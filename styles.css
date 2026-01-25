@@ -727,13 +727,119 @@ footer {
     color: var(--gold);
 }
 
-/* Responsive */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-    h1 {
-        font-size: 2.2rem;
+    header {
+        padding: 40px 0 30px;
     }
-    .nav-link {
-        padding: 8px 20px;
+
+    .main-logo {
+        max-width: 300px;
+    }
+
+    .header-subtitle {
         font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    nav {
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding: 10px 5px;
+        gap: 10px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
+    }
+
+    nav::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for Chrome/Safari */
+    }
+
+    .nav-link {
+        flex: 0 0 auto;
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+
+    .tab-content {
+        padding: 30px 0;
+    }
+
+    /* Home section */
+    .home-main-card {
+        padding: 25px;
+    }
+
+    .home-main-card p {
+        font-size: 1rem;
+    }
+
+    .home-actions {
+        flex-direction: column;
+    }
+
+    .cta-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Modal Adjustments */
+    .modal-content {
+        padding: 20px;
+        margin: 10% auto;
+        width: 95%;
+    }
+
+    #modal-title {
+        font-size: 1.8rem;
+    }
+
+    .game-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    /* Live Stream */
+    .stream-container {
+        border-width: 2px;
+    }
+
+    /* Teams Grid */
+    .teams-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .team-icon {
+        width: 60px;
+        height: 60px;
+    }
+
+    .score-main {
+        font-size: 2rem;
+    }
+
+    .close-lightbox {
+        right: 20px;
+        font-size: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-logo {
+        max-width: 220px;
+    }
+
+    .header-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .nav-link {
+        padding: 6px 12px;
+        font-size: 0.8rem;
     }
 }
