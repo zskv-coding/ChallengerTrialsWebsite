@@ -1,15 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.nav-link');
     const contents = document.querySelectorAll('.tab-content');
+    const transitionOverlay = document.getElementById('page-transition');
     let twitchEmbed = null;
 
+    // Trigger initial load transition
+    triggerTransition();
+    
     initTitleTypewriter();
     initGameModals();
 
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const target = tab.getAttribute('data-tab');
-            switchTab(target);
+            if (!tab.classList.contains('active')) {
+                triggerTransition(() => switchTab(target));
+            }
         });
     });
 
@@ -18,9 +24,25 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
             const target = btn.getAttribute('data-tab-switch');
-            switchTab(target);
+            triggerTransition(() => switchTab(target));
         });
     });
+
+    function triggerTransition(callback = null) {
+        transitionOverlay.classList.add('active');
+        document.body.classList.add('loading');
+
+        // Halfway through transition, execute callback
+        setTimeout(() => {
+            if (callback) callback();
+        }, 500);
+
+        // End transition
+        setTimeout(() => {
+            transitionOverlay.classList.remove('active');
+            document.body.classList.remove('loading');
+        }, 1200);
+    }
 
     function switchTab(target) {
         // Update active states
