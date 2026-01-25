@@ -173,6 +173,72 @@ nav {
     height: 100%;
 }
 
+/* Team Scores */
+.team-scores-section {
+    margin-top: 80px;
+}
+
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.team-card-score {
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: transform 0.3s ease;
+}
+
+.team-card-score:hover {
+    transform: translateY(-5px);
+}
+
+.team-card-score h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
+}
+
+.score-main {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-family: 'Cinzel', serif;
+}
+
+.player-list {
+    text-align: left;
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 10px;
+}
+
+.player-list p {
+    margin: 5px 0;
+}
+
+/* Team Colors */
+.team-red { border-color: #ff4d4d; color: #ff4d4d; }
+.team-orange { border-color: #ffa500; color: #ffa500; }
+.team-yellow { border-color: #ffff00; color: #ffff00; }
+.team-lime { border-color: #32cd32; color: #32cd32; }
+.team-green { border-color: #008000; color: #008000; }
+.team-aqua { border-color: #00ffff; color: #00ffff; }
+.team-blue { border-color: #4d4dff; color: #4d4dff; }
+.team-cyan { border-color: #00ced1; color: #00ced1; }
+.team-purple { border-color: #bf00ff; color: #bf00ff; }
+.team-pink { border-color: #ff69b4; color: #ff69b4; }
+
+/* Adjust individual scores text color to keep them readable but distinct */
+.team-card-score .player-list p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
 /* Footer */
 footer {
     padding: 40px 0;
