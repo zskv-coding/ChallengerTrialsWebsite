@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     initTitleTypewriter();
     initGameModals();
+    initPlayers();
 
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -153,8 +154,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         window.addEventListener('click', (event) => {
+            const playerModal = document.getElementById('player-modal');
             if (event.target === modal) {
                 modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+            if (event.target === playerModal) {
+                playerModal.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
             if (event.target === lightbox) {
@@ -223,5 +229,64 @@ document.addEventListener('DOMContentLoaded', () => {
             parent: parents,
             layout: "video"
         });
+    }
+
+    function initPlayers() {
+        const grid = document.getElementById('players-grid');
+        const modal = document.getElementById('player-modal');
+        const closeBtn = document.querySelector('.player-close-modal');
+
+        // Populate grid
+        playerData.forEach(player => {
+            const card = document.createElement('div');
+            card.className = 'player-card';
+            card.innerHTML = `
+                <div class="player-card-inner">
+                    <img src="https://visage.surreal.cloud/bust/128/${player.uuid}" alt="${player.name}" class="player-card-skin" onerror="this.src='https://crafatar.com/renders/head/${player.uuid}'">
+                    <div class="player-card-info">
+                        <span class="player-card-name">${player.name}</span>
+                        <button class="stats-btn">Stats</button>
+                    </div>
+                </div>
+            `;
+
+            card.addEventListener('click', () => showPlayerStats(player));
+            grid.appendChild(card);
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        function showPlayerStats(player) {
+            document.getElementById('player-detail-name').textContent = player.name;
+            document.getElementById('player-detail-uuid').textContent = player.uuid;
+            document.getElementById('player-detail-skin').src = `https://visage.surreal.cloud/full/512/${player.uuid}`;
+            document.getElementById('stat-won').textContent = player.won;
+            document.getElementById('stat-rank').textContent = player.rank;
+            document.getElementById('stat-avg').textContent = player.avg;
+            document.getElementById('stat-events').textContent = player.events;
+
+            const scoresList = document.getElementById('player-scores-list');
+            scoresList.innerHTML = '';
+            
+            if (player.scores.length === 0) {
+                scoresList.innerHTML = '<p class="no-data">No event history available yet.</p>';
+            } else {
+                player.scores.forEach((score, index) => {
+                    const scoreItem = document.createElement('div');
+                    scoreItem.className = 'score-item';
+                    scoreItem.innerHTML = `
+                        <span class="event-name">Event ${index + 1}</span>
+                        <span class="event-score">${score}</span>
+                    `;
+                    scoresList.appendChild(scoreItem);
+                });
+            }
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
     }
 });
