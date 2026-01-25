@@ -9,20 +9,44 @@ document.addEventListener('DOMContentLoaded', () => {
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const target = tab.getAttribute('data-tab');
-
-            // Update active states
-            tabs.forEach(t => t.classList.remove('active'));
-            contents.forEach(c => c.classList.remove('active'));
-
-            tab.classList.add('active');
-            document.getElementById(target).classList.add('active');
-
-            // Initialize Twitch if Live tab is clicked and not already initialized
-            if (target === 'live' && !twitchEmbed) {
-                initTwitch();
-            }
+            switchTab(target);
         });
     });
+
+    // Handle internal tab switches
+    document.querySelectorAll('[data-tab-switch]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const target = btn.getAttribute('data-tab-switch');
+            switchTab(target);
+        });
+    });
+
+    function switchTab(target) {
+        // Update active states
+        tabs.forEach(t => {
+            if (t.getAttribute('data-tab') === target) {
+                t.classList.add('active');
+            } else {
+                t.classList.remove('active');
+            }
+        });
+
+        contents.forEach(c => {
+            if (c.getAttribute('id') === target) {
+                c.classList.add('active');
+            } else {
+                c.classList.remove('active');
+            }
+        });
+
+        // Initialize Twitch if Live tab is clicked and not already initialized
+        if (target === 'live' && !twitchEmbed) {
+            initTwitch();
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
     function initGameModals() {
         const modal = document.getElementById('game-modal');

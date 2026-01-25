@@ -34,7 +34,8 @@
             <img src="ct_fulltext.png" alt="Challenger Trials" class="main-logo">
             <p class="header-subtitle">A Minecraft event for content creators of all size.</p>
             <nav>
-                <button class="nav-link active" data-tab="games">Games</button>
+                <button class="nav-link active" data-tab="home">Home</button>
+                <button class="nav-link" data-tab="games">Games</button>
                 <button class="nav-link" data-tab="players">Players</button>
                 <button class="nav-link" data-tab="live">Live</button>
             </nav>
@@ -42,7 +43,42 @@
     </header>
 
     <main>
-        <section id="games" class="tab-content active">
+        <section id="home" class="tab-content active">
+            <div class="container">
+                <div class="home-grid">
+                    <div class="home-main-card">
+                        <h2 class="section-title">Welcome to Challenger Trials</h2>
+                        <p>Challenger Trials is a premier Minecraft event specifically designed for content creators of all sizes to showcase their skills, collaborate, and compete in a series of unique, custom-coded challenges.</p>
+                        
+                        <div class="home-actions">
+                            <a href="https://discord.gg/challengertrials" target="_blank" class="cta-button discord-btn">Join our Discord</a>
+                            <a href="#" class="cta-button secondary-btn" data-tab-switch="games">Explore Games</a>
+                        </div>
+                    </div>
+
+                    <div class="info-sidebar">
+                        <div class="info-box">
+                            <h3>Quick Links</h3>
+                            <ul class="quick-links">
+                                <li><a href="https://discord.gg/challengertrials" target="_blank">Official Discord</a></li>
+                                <li><a href="https://twitter.com/ChallengerTrial" target="_blank">Follow us on Twitter</a></li>
+                                <li><a href="https://www.youtube.com/@ChallengerTrials" target="_blank">Subscribe on YouTube</a></li>
+                            </ul>
+                        </div>
+                        <div class="info-box">
+                            <h3>Navigation Guide</h3>
+                            <ul class="nav-guide">
+                                <li><strong>Games:</strong> View detailed info and videos of all tournament games.</li>
+                                <li><strong>Players:</strong> See the full list of participants for the current event.</li>
+                                <li><strong>Live:</strong> Watch the event live and track real-time team standings.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="games" class="tab-content">
             <div class="container">
                 <h2 class="section-title">Tournament Games</h2>
                 <div class="games-grid">
