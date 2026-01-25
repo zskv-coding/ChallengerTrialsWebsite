@@ -260,6 +260,28 @@ nav {
     padding-bottom: 10px;
 }
 
+.game-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.gallery-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border: 2px solid #444;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.gallery-img:hover {
+    border-color: var(--gold);
+    transform: scale(1.02);
+    cursor: pointer;
+}
+
 .modal-link {
     color: var(--gold-light);
     text-decoration: underline;

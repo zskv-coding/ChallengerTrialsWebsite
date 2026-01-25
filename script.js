@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const modalDesc = document.getElementById('modal-description');
         const closeBtn = document.querySelector('.close-modal');
         const gameCards = document.querySelectorAll('.game-card');
+        const galleryImages = document.querySelectorAll('.gallery-img');
 
         const descriptions = {
             'capture-the-flag': `
@@ -84,6 +85,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (descriptions[gameKey]) {
                     modalTitle.textContent = card.querySelector('h2').textContent;
                     modalDesc.innerHTML = descriptions[gameKey];
+                    
+                    // Update gallery images
+                    galleryImages.forEach((img, index) => {
+                        img.src = `images/${gameKey}-${index + 1}.png`;
+                        img.alt = `${modalTitle.textContent} Screenshot ${index + 1}`;
+                    });
+
                     modal.style.display = 'block';
                     document.body.style.overflow = 'hidden'; // Prevent scrolling
                 }
