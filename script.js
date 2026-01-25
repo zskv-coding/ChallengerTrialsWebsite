@@ -31,6 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const closeBtn = document.querySelector('.close-modal');
         const gameCards = document.querySelectorAll('.game-card');
         const galleryImages = document.querySelectorAll('.gallery-img');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeLightbox = document.querySelector('.close-lightbox');
 
         const descriptions = {
             'capture-the-flag': `
@@ -108,6 +111,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
             }
+            if (event.target === lightbox) {
+                lightbox.classList.remove('active');
+            }
+        });
+
+        // Lightbox logic
+        galleryImages.forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.classList.add('active');
+            });
+        });
+
+        closeLightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
         });
     }
 
