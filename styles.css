@@ -61,11 +61,20 @@ header {
 }
 
 .main-logo {
-    max-width: 600px;
+    max-width: 450px;
     width: 100%;
     height: auto;
     filter: drop-shadow(0 0 20px rgba(0,0,0,0.8));
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.header-subtitle {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-light);
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    letter-spacing: 1px;
 }
 
 nav {
