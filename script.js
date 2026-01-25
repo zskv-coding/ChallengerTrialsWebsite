@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Update gallery images
                     galleryImages.forEach((img, index) => {
-                        img.src = `images/${gameKey}-${index + 1}.png`;
+                        img.src = `${gameKey}-${index + 1}.png`;
                         img.alt = `${modalTitle.textContent} Screenshot ${index + 1}`;
                     });
 
