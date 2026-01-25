@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const contents = document.querySelectorAll('.tab-content');
     let twitchEmbed = null;
 
+    initTitleTypewriter();
+
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const target = tab.getAttribute('data-tab');
@@ -20,6 +22,31 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    function initTitleTypewriter() {
+        const fullTitle = "Challenger Trials";
+        let i = 0;
+        
+        function type() {
+            if (i <= fullTitle.length) {
+                document.title = fullTitle.substring(0, i) + (i < fullTitle.length ? "_" : "");
+                i++;
+                setTimeout(type, 150);
+            } else {
+                let blinks = 0;
+                const blinkInterval = setInterval(() => {
+                    document.title = fullTitle + (blinks % 2 === 0 ? " " : "_");
+                    blinks++;
+                    if (blinks > 5) {
+                        clearInterval(blinkInterval);
+                        document.title = fullTitle;
+                    }
+                }, 500);
+            }
+        }
+        
+        type();
+    }
 
     function initTwitch() {
         const host = window.location.hostname;
