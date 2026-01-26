@@ -651,6 +651,129 @@ nav {
     color: rgba(255, 255, 255, 0.8);
 }
 
+/* Previous Events Section */
+.previous-events-section {
+    margin-top: 80px;
+    padding-bottom: 40px;
+}
+
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.event-card {
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid #3d3d3d;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.event-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.event-card-header {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.event-tag {
+    background: var(--gold);
+    color: var(--maroon);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.event-title {
+    font-size: 1.5rem;
+    color: #fff;
+}
+
+.event-winner-brief {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: bold;
+    color: var(--gold-light);
+}
+
+.winner-icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.event-card-body {
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.event-card-body h4 {
+    color: var(--gold);
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 10px;
+}
+
+.mini-standing-row, .mini-indiv-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+
+.rank {
+    width: 40px;
+    font-weight: bold;
+    color: #888;
+}
+
+.mini-standing-row:nth-child(2) .rank, .mini-indiv-row:nth-child(2) .rank { color: var(--gold); }
+.mini-standing-row:nth-child(3) .rank, .mini-indiv-row:nth-child(3) .rank { color: #c0c0c0; }
+.mini-standing-row:nth-child(4) .rank, .mini-indiv-row:nth-child(4) .rank { color: #cd7f32; }
+
+.team-name, .player-name {
+    flex: 1;
+}
+
+.points {
+    font-weight: bold;
+    color: #fff;
+}
+
+.color-purple { color: #bf00ff; }
+.color-red { color: #ff4d4d; }
+.color-cyan { color: #00ced1; }
+
+@media (max-width: 768px) {
+    .event-card-body {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .event-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+
 /* Footer */
 footer {
     padding: 40px 0;
