@@ -732,6 +732,52 @@ nav {
     gap: 30px;
 }
 
+.full-stats-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.section-subtitle {
+    color: var(--gold);
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.team-dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.player-score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.player-score-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.player-score-item span {
+    color: #ccc;
+}
+
+.player-score-item strong {
+    color: var(--gold-light);
+}
+
 @media (max-width: 600px) {
     .event-detail-grid {
         grid-template-columns: 1fr;

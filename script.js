@@ -307,17 +307,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!grid) return;
 
+        const eventDataMap = {
+            1: {
+                tag: "Alpha #1",
+                title: "Challenger Trials Alpha 1",
+                description: "The very first Challenger Trials event. A historic beginning for the tournament!",
+                winner: { name: "Red Robots", icon: "red-robots.png" },
+                teams: [
+                    { name: "Red Robots", color: "red", score: 9545, players: [
+                        { name: "Apples05", score: 3055 },
+                        { name: "Venmyr", score: 1725 },
+                        { name: "Weaponknight", score: 3155 },
+                        { name: "siegeholm", score: 1610 }
+                    ]},
+                    { name: "Green Geese", color: "green", score: 9435, players: [
+                        { name: "thebestharrison1221", score: 2405 },
+                        { name: "ShadoPup", score: 1840 },
+                        { name: "Blinci", score: 3280 },
+                        { name: "MrKaden", score: 1910 }
+                    ]},
+                    { name: "Yellow Yetis", color: "yellow", score: 5920, players: [
+                        { name: "MuddyPuddle", score: 2155 },
+                        { name: "cazza554", score: 1020 },
+                        { name: "hunterdretnuh", score: 1415 },
+                        { name: "Salty", score: 1330 }
+                    ]},
+                    { name: "Blue Beacons", color: "blue", score: 5820, players: [
+                        { name: "CelestialSk1es", score: 1875 },
+                        { name: "Maggiemoozle", score: 1520 },
+                        { name: "sbslbutters", score: 1475 },
+                        { name: "lego_flame", score: 950 }
+                    ]},
+                    { name: "Orange Owls", color: "orange", score: 5440, players: [
+                        { name: "WolfieLiam", score: 1780 },
+                        { name: "Ramoon", score: 1730 },
+                        { name: "GabbyViolets", score: 1260 },
+                        { name: "Taliesin", score: 670 }
+                    ]},
+                    { name: "Cyan Cyclones", color: "cyan", score: 4930, players: [
+                        { name: "Spencor", score: 1010 },
+                        { name: "Inditorias", score: 1310 },
+                        { name: "K_man57", score: 1025 },
+                        { name: "Lecoona", score: 1585 }
+                    ]}
+                ],
+                topPlayers: [
+                    { name: "Blinci", score: 3280 },
+                    { name: "Weaponknight", score: 3155 },
+                    { name: "Apples05", score: 3055 }
+                ]
+            }
+        };
+
         // Generate Alpha 1 to Alpha 20
         for (let i = 20; i >= 1; i--) {
-            const eventData = {
-                id: i,
-                tag: `Alpha #${i}`,
-                title: `Challenger Trials Alpha ${i}`,
-                description: "Event information coming soon! Stay tuned for actual results and standings."
-            };
+            let eventData;
+            
+            if (eventDataMap[i]) {
+                eventData = eventDataMap[i];
+                eventData.id = i;
+            } else {
+                eventData = {
+                    id: i,
+                    tag: `Alpha #${i}`,
+                    title: `Challenger Trials Alpha ${i}`,
+                    description: "Event information coming soon! Stay tuned for actual results and standings.",
+                    placeholder: true
+                };
+            }
 
             const card = document.createElement('div');
             card.className = 'event-card';
+            
+            let winnerInfo = '<span>Details coming soon...</span>';
+            if (eventData.winner) {
+                winnerInfo = `
+                    <img src="${eventData.winner.icon}" alt="${eventData.winner.name}" class="winner-icon">
+                    <span>Winner: ${eventData.winner.name}</span>
+                `;
+            }
+
             card.innerHTML = `
                 <div class="event-card-header">
                     <div class="event-info">
@@ -325,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h3 class="event-title">${eventData.title}</h3>
                     </div>
                     <div class="event-winner-brief">
-                        <span>Details coming soon...</span>
+                        ${winnerInfo}
                     </div>
                 </div>
             `;
@@ -333,22 +402,74 @@ document.addEventListener('DOMContentLoaded', () => {
             card.addEventListener('click', () => {
                 detailTag.textContent = eventData.tag;
                 detailTitle.textContent = eventData.title;
-                detailInfo.innerHTML = `
-                    <div class="event-detail-section">
-                        <h3><span class="icon">ℹ️</span> Description</h3>
-                        <p>${eventData.description}</p>
-                    </div>
-                    <div class="event-detail-grid">
+                
+                if (eventData.placeholder) {
+                    detailInfo.innerHTML = `
                         <div class="event-detail-section">
-                            <h3><span class="icon">🏆</span> Top Teams</h3>
-                            <p>Data will be updated shortly.</p>
+                            <h3><span class="icon">ℹ️</span> Description</h3>
+                            <p>${eventData.description}</p>
                         </div>
+                        <div class="event-detail-grid">
+                            <div class="event-detail-section">
+                                <h3><span class="icon">🏆</span> Top Teams</h3>
+                                <p>Data will be updated shortly.</p>
+                            </div>
+                            <div class="event-detail-section">
+                                <h3><span class="icon">👤</span> Top Players</h3>
+                                <p>Data will be updated shortly.</p>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    let teamStandingsHtml = eventData.teams.map((team, idx) => `
+                        <div class="mini-standing-row">
+                            <span class="rank">${idx + 1}${idx === 0 ? 'st' : idx === 1 ? 'nd' : idx === 2 ? 'rd' : 'th'}</span>
+                            <span class="team-name color-${team.color}">${team.name}</span>
+                            <span class="points">${team.score.toLocaleString()}</span>
+                        </div>
+                    `).join('');
+
+                    let topPlayersHtml = eventData.topPlayers.map((player, idx) => `
+                        <div class="mini-indiv-row">
+                            <span class="rank">${idx + 1}${idx === 0 ? 'st' : idx === 1 ? 'nd' : idx === 2 ? 'rd' : 'th'}</span>
+                            <span class="player-name">${player.name}</span>
+                            <span class="points">${player.score.toLocaleString()}</span>
+                        </div>
+                    `).join('');
+
+                    // Full team details for wide view
+                    let fullStandingsHtml = eventData.teams.map(team => `
                         <div class="event-detail-section">
-                            <h3><span class="icon">👤</span> Top Players</h3>
-                            <p>Data will be updated shortly.</p>
+                            <h3><span class="team-dot color-${team.color}"></span> ${team.name} - ${team.score.toLocaleString()}</h3>
+                            <div class="player-score-grid">
+                                ${team.players.map(p => `<div class="player-score-item"><span>${p.name}</span> <strong>${p.score.toLocaleString()}</strong></div>`).join('')}
+                            </div>
                         </div>
-                    </div>
-                `;
+                    `).join('');
+
+                    detailInfo.innerHTML = `
+                        <div class="event-detail-section">
+                            <h3><span class="icon">ℹ️</span> Description</h3>
+                            <p>${eventData.description}</p>
+                        </div>
+                        <div class="event-detail-grid">
+                            <div class="event-detail-section">
+                                <h3><span class="icon">🏆</span> Final Standings</h3>
+                                ${teamStandingsHtml}
+                            </div>
+                            <div class="event-detail-section">
+                                <h3><span class="icon">👤</span> Top Players</h3>
+                                ${topPlayersHtml}
+                            </div>
+                        </div>
+                        <div class="event-detail-section full-stats-divider">
+                            <h2 class="section-subtitle">Individual Team Scores</h2>
+                        </div>
+                        <div class="full-event-stats">
+                            ${fullStandingsHtml}
+                        </div>
+                    `;
+                }
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
             });
