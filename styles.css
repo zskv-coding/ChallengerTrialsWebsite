@@ -669,11 +669,13 @@ nav {
     border-radius: 12px;
     overflow: hidden;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .event-card:hover {
     border-color: var(--gold);
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transform: translateY(-5px);
 }
 
 .event-card-header {
@@ -683,6 +685,61 @@ nav {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Modal for events */
+.event-modal-content {
+    max-width: 800px;
+    background: #222;
+    border: 3px solid var(--gold);
+    border-radius: 15px;
+    padding: 40px;
+}
+
+.event-detail-header {
+    margin-bottom: 30px;
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 20px;
+}
+
+.event-detail-header h2 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-top: 10px;
+}
+
+#event-detail-full-info {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.event-detail-section {
+    margin-bottom: 30px;
+}
+
+.event-detail-section h3 {
+    color: var(--gold);
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.event-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 600px) {
+    .event-detail-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .event-detail-header h2 {
+        font-size: 1.8rem;
+    }
 }
 
 .event-tag {

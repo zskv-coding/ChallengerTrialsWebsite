@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTitleTypewriter();
     initGameModals();
     initPlayers();
+    initPreviousEvents();
 
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -294,5 +295,79 @@ document.addEventListener('DOMContentLoaded', () => {
             modal.style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
+    }
+
+    function initPreviousEvents() {
+        const grid = document.getElementById('previous-events-list');
+        const modal = document.getElementById('event-modal');
+        const closeBtn = document.querySelector('.event-close-modal');
+        const detailTag = document.getElementById('event-detail-tag');
+        const detailTitle = document.getElementById('event-detail-title');
+        const detailInfo = document.getElementById('event-detail-full-info');
+
+        if (!grid) return;
+
+        // Generate Alpha 1 to Alpha 20
+        for (let i = 20; i >= 1; i--) {
+            const eventData = {
+                id: i,
+                tag: `Alpha #${i}`,
+                title: `Challenger Trials Alpha ${i}`,
+                description: "Event information coming soon! Stay tuned for actual results and standings."
+            };
+
+            const card = document.createElement('div');
+            card.className = 'event-card';
+            card.innerHTML = `
+                <div class="event-card-header">
+                    <div class="event-info">
+                        <span class="event-tag">${eventData.tag}</span>
+                        <h3 class="event-title">${eventData.title}</h3>
+                    </div>
+                    <div class="event-winner-brief">
+                        <span>Details coming soon...</span>
+                    </div>
+                </div>
+            `;
+
+            card.addEventListener('click', () => {
+                detailTag.textContent = eventData.tag;
+                detailTitle.textContent = eventData.title;
+                detailInfo.innerHTML = `
+                    <div class="event-detail-section">
+                        <h3><span class="icon">ℹ️</span> Description</h3>
+                        <p>${eventData.description}</p>
+                    </div>
+                    <div class="event-detail-grid">
+                        <div class="event-detail-section">
+                            <h3><span class="icon">🏆</span> Top Teams</h3>
+                            <p>Data will be updated shortly.</p>
+                        </div>
+                        <div class="event-detail-section">
+                            <h3><span class="icon">👤</span> Top Players</h3>
+                            <p>Data will be updated shortly.</p>
+                        </div>
+                    </div>
+                `;
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+
+            grid.appendChild(card);
+        }
+
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            });
+        }
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
     }
 });
