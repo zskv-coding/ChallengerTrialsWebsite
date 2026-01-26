@@ -242,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
             card.className = 'player-card';
             card.innerHTML = `
                 <div class="player-card-inner">
-                    <img src="https://visage.surreal.cloud/bust/128/${player.uuid}" alt="${player.name}" class="player-card-skin" onerror="this.src='https://crafatar.com/renders/head/${player.uuid}'">
+                    <img src="https://crafatar.com/avatars/${player.uuid}?size=128&overlay" alt="${player.name}" class="player-card-skin" onerror="this.src='https://minotar.net/helm/${player.uuid}/128'">
                     <div class="player-card-info">
                         <span class="player-card-name">${player.name}</span>
                         <button class="stats-btn">Stats</button>
@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function showPlayerStats(player) {
             document.getElementById('player-detail-name').textContent = player.name;
             document.getElementById('player-detail-uuid').textContent = player.uuid;
-            document.getElementById('player-detail-skin').src = `https://visage.surreal.cloud/full/512/${player.uuid}`;
+            document.getElementById('player-detail-skin').src = `https://crafatar.com/renders/body/${player.uuid}?size=512&overlay`;
             document.getElementById('stat-won').textContent = player.won;
             document.getElementById('stat-rank').textContent = player.rank;
             document.getElementById('stat-avg').textContent = player.avg;
