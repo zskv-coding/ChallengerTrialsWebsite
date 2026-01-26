@@ -262,7 +262,13 @@ document.addEventListener('DOMContentLoaded', () => {
         function showPlayerStats(player) {
             document.getElementById('player-detail-name').textContent = player.name;
             document.getElementById('player-detail-uuid').textContent = player.uuid;
-            document.getElementById('player-detail-skin').src = `https://crafatar.com/renders/body/${player.uuid}?size=512&overlay`;
+            
+            const detailSkin = document.getElementById('player-detail-skin');
+            detailSkin.src = `https://mc-heads.net/body/${player.uuid}/512`;
+            detailSkin.onerror = function() {
+                this.src = `https://crafatar.com/renders/body/${player.uuid}?size=512&overlay`;
+            };
+
             document.getElementById('stat-won').textContent = player.won;
             document.getElementById('stat-rank').textContent = player.rank;
             document.getElementById('stat-avg').textContent = player.avg;
