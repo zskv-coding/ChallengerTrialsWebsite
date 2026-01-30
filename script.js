@@ -312,58 +312,82 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const eventDataMap = {
             1: {
-                tag: "Alpha #1",
-                title: "Challenger Trials Alpha 1",
-                description: "The very first Challenger Trials event. A historic beginning for the tournament!",
-                winner: { name: "Red Robots", icon: "red-robots.png" },
+                tag: "Beta #1",
+                title: "Challenger Trials Beta 1",
+                description: "The first Beta event of Challenger Trials! A new chapter begins with fierce competition and amazing plays.",
+                winner: { name: "Blue Beacons", icon: "blue-beacons.png" },
                 teams: [
-                    { name: "Red Robots", color: "red", score: 9545, players: [
-                        { name: "Apples05", score: 3055 },
-                        { name: "Venmyr", score: 1725 },
-                        { name: "Weaponknight", score: 3155 },
-                        { name: "siegeholm", score: 1610 }
+                    { name: "Green Geese", color: "green", score: 9740, players: [
+                        { name: "hiitzhunter", score: 2968 },
+                        { name: "SaltContent", score: 2572 },
+                        { name: "sandich", score: 1600 },
+                        { name: "Skate8", score: 2600 }
                     ]},
-                    { name: "Green Geese", color: "green", score: 9435, players: [
-                        { name: "thebestharrison1221", score: 2405 },
-                        { name: "ShadoPup", score: 1840 },
-                        { name: "Blinci", score: 3280 },
-                        { name: "MrKaden", score: 1910 }
+                    { name: "Blue Beacons", color: "blue", score: 9171, players: [
+                        { name: "madnes__", score: 1663 },
+                        { name: "nooobi", score: 2285 },
+                        { name: "Sacronix", score: 2980 },
+                        { name: "Snoae", score: 2243 }
                     ]},
-                    { name: "Yellow Yetis", color: "yellow", score: 5920, players: [
-                        { name: "MuddyPuddle", score: 2155 },
-                        { name: "cazza554", score: 1020 },
-                        { name: "hunterdretnuh", score: 1415 },
-                        { name: "Salty", score: 1330 }
+                    { name: "Cyan Cyclones", color: "cyan", score: 8258, players: [
+                        { name: "Faistara", score: 2595 },
+                        { name: "g4vy", score: 1846 },
+                        { name: "itsnuku", score: 1829 },
+                        { name: "Kbelik", score: 1988 }
                     ]},
-                    { name: "Blue Beacons", color: "blue", score: 5820, players: [
-                        { name: "CelestialSk1es", score: 1875 },
-                        { name: "Maggiemoozle", score: 1520 },
-                        { name: "sbslbutters", score: 1475 },
-                        { name: "lego_flame", score: 950 }
+                    { name: "Orange Owls", color: "orange", score: 7920, players: [
+                        { name: "C12dawg", score: 1852 },
+                        { name: "QuartzIsCanon", score: 2237 },
+                        { name: "Wo0o0o0ble_", score: 2072 },
+                        { name: "WolfieLiam", score: 1759 }
                     ]},
-                    { name: "Orange Owls", color: "orange", score: 5440, players: [
-                        { name: "WolfieLiam", score: 1780 },
-                        { name: "Ramoon", score: 1730 },
-                        { name: "GabbyViolets", score: 1260 },
-                        { name: "Taliesin", score: 670 }
+                    { name: "Yellow Yetis", color: "yellow", score: 7810, players: [
+                        { name: "Ess4nce", score: 2124 },
+                        { name: "HoodieDuck_", score: 2204 },
+                        { name: "ItzChoco", score: 1887 },
+                        { name: "quizky", score: 1595 }
                     ]},
-                    { name: "Cyan Cyclones", color: "cyan", score: 4930, players: [
-                        { name: "Spencor", score: 1010 },
-                        { name: "Inditorias", score: 1310 },
-                        { name: "K_man57", score: 1025 },
-                        { name: "Lecoona", score: 1585 }
+                    { name: "Red Robots", color: "red", score: 7423, players: [
+                        { name: "daneloldane", score: 1354 },
+                        { name: "Krumbld", score: 2257 },
+                        { name: "MiniBoru", score: 1502 },
+                        { name: "MrCakeness", score: 2310 }
+                    ]},
+                    { name: "Pink Pilots", color: "pink", score: 6840, players: [
+                        { name: "Percee_", score: 941 },
+                        { name: "PizzaBuff", score: 1815 },
+                        { name: "PorcChrysus", score: 2252 },
+                        { name: "ProfPie2000", score: 1832 }
+                    ]},
+                    { name: "Aqua Aliens", color: "aqua", score: 6768, players: [
+                        { name: "Chandiggitydog", score: 2286 },
+                        { name: "Ka1b23i", score: 974 },
+                        { name: "SpoonyTable", score: 2026 },
+                        { name: "TinyRiotx", score: 1482 }
+                    ]},
+                    { name: "Lime Lizards", color: "lime", score: 6686, players: [
+                        { name: "DylanWMC", score: 1538 },
+                        { name: "McZeal", score: 1062 },
+                        { name: "Messyo", score: 2312 },
+                        { name: "xd_Bayern", score: 1774 }
+                    ]},
+                    { name: "Purple Pirates", color: "purple", score: 5147, players: [
+                        { name: "CHALLY073763", score: 1130 },
+                        { name: "RedTheCactus", score: 983 },
+                        { name: "SlothRSR", score: 1161 },
+                        { name: "Stehllar_", score: 1873 }
                     ]}
                 ],
                 topPlayers: [
-                    { name: "Blinci", score: 3280 },
-                    { name: "Weaponknight", score: 3155 },
-                    { name: "Apples05", score: 3055 }
+                    { name: "Sacronix", score: 2980 },
+                    { name: "hiitzhunter", score: 2968 },
+                    { name: "Skate8", score: 2600 }
                 ]
             }
         };
 
-        // Generate Alpha 1 to Alpha 20
-        for (let i = 20; i >= 1; i--) {
+        // Generate Previous Events (just Beta #1 for now)
+        for (let i = 1; i >= 1; i--) {
             let eventData;
             
             if (eventDataMap[i]) {
@@ -372,8 +396,8 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 eventData = {
                     id: i,
-                    tag: `Alpha #${i}`,
-                    title: `Challenger Trials Alpha ${i}`,
+                    tag: `Beta #${i}`,
+                    title: `Challenger Trials Beta ${i}`,
                     description: "Event information coming soon! Stay tuned for actual results and standings.",
                     placeholder: true
                 };
