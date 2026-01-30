@@ -65,8 +65,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Initialize Twitch if Live tab is clicked and not already initialized
-        if (target === 'live' && !twitchEmbed) {
-            initTwitch();
+        if (target === 'live') {
+            if (!twitchEmbed) {
+                initTwitch();
+            }
+            updateLiveStandings(); // Fetch and update scores
         }
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -490,5 +493,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.body.style.overflow = 'auto';
             }
         });
+    }
+
+    async function updateLiveStandings() {
+        // REPLACE THIS with your actual Koyeb URL
+        const API_URL = 'https://determined-kore-challengertrials-f861d4c5.koyeb.app/teams';
+        
+        try {
+            const response = await fetch(API_URL);
+            if (!response.ok) return;
+            
+            const data = await response.json();
+            
+            data.forEach(team => {
+                // Finds the card (e.g., .team-red, .team-orange)
+                const teamCard = document.querySelector(`.team-card-score.team-${team.team_id}`);
+                
+                if (teamCard) {
+                    // Update main score
+                    teamCard.querySelector('.score-main').textContent = team.total_score.toLocaleString();
+                    
+                    // Update player list
+                    const playerList = teamCard.querySelector('.player-list');
+                    if (playerList && team.players) {
+                        playerList.innerHTML = team.players.map(p => 
+                            `<p>${p.name}: ${p.score.toLocaleString()}</p>`
+                        ).join('');
+                    }
+                }
+            });
+        } catch (error) {
+            console.warn('Live standings API not available yet. Using static data.');
+        }
     }
 });
