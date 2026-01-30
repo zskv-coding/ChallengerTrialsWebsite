@@ -226,13 +226,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!parents.includes("127.0.0.1")) parents.push("127.0.0.1");
         }
         
-        twitchEmbed = new Twitch.Embed("twitch-embed", {
-            width: "100%",
-            height: "100%",
+        twitchEmbed = new Twitch.Player("twitch-embed", {
             channel: "challengertrials",
-            parent: parents,
-            autoplay: false,
-            muted: false
+            parent: parents
         });
     }
 
