@@ -578,8 +578,9 @@ nav {
 }
 
 .teams-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
 }
 
@@ -590,6 +591,8 @@ nav {
     text-align: center;
     border: 2px solid transparent;
     transition: transform 0.3s ease;
+    flex: 1 1 220px;
+    max-width: 280px;
 }
 
 .team-card-score:hover {
@@ -1211,7 +1214,13 @@ footer {
 
     /* Teams Grid */
     .teams-grid {
-        grid-template-columns: 1fr;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-card-score {
+        max-width: 100%;
+        width: 100%;
     }
 
     .team-icon {
