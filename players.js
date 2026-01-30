@@ -57,7 +57,7 @@ const playerData = [
     { name: "PizzaBuff", uuid: "0b10b7b6-8836-4457-988c-24f5823047fa", won: 0, rank: "0.96", avg: "1815", events: 1, scores: [1815] },
     { name: "PorcChrysus", uuid: "6adb7d55-957e-4e73-856d-c932c6f38b2d", won: 0, rank: "1.19", avg: "2252", events: 1, scores: [2252] },
     { name: "ProfPie2000", uuid: "a5bb148c-a8c9-4e7c-8087-918e8585bb31", won: 0, rank: "0.97", avg: "1832", events: 1, scores: [1832] },
-    { name: "QuartzIsCanon", uuid: "1aeb76ea-f97d-43f6-9ae6-1966ac1775a0", won: 0, rank: "1.18", avg: "2237", events: 1, scores: [2237] },
+    { name: "QuartzIsCanon", uuid: "1aeb76ea-f97d-43f6-9ae6-1966ac17d5a0", won: 0, rank: "1.18", avg: "2237", events: 1, scores: [2237] },
     { name: "quizky", uuid: "a920cb6b-78d2-426a-9707-8ee9d8061d04", won: 0, rank: "0.84", avg: "1595", events: 1, scores: [1595] },
     { name: "Redd2", uuid: "57c0ca05-56d8-42b2-b89f-f063a11bd5d9", won: 0, rank: "-", avg: "-", events: 0, scores: [] },
     { name: "RedTheCactus", uuid: "a2c3eb91-6cbc-4d5d-ab2f-e0543719e197", won: 0, rank: "0.52", avg: "983", events: 1, scores: [983] },

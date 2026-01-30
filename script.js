@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const parents = [host];
+        const parents = [host, "challengertrials.com", "www.challengertrials.com"];
         if (host === "localhost" || host === "127.0.0.1") {
             if (!parents.includes("localhost")) parents.push("localhost");
             if (!parents.includes("127.0.0.1")) parents.push("127.0.0.1");
@@ -231,7 +231,8 @@ document.addEventListener('DOMContentLoaded', () => {
             height: "100%",
             channel: "challengertrials",
             parent: parents,
-            layout: "video"
+            autoplay: false,
+            muted: false
         });
     }
 
