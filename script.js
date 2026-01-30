@@ -314,7 +314,7 @@ document.addEventListener('DOMContentLoaded', () => {
             1: {
                 tag: "Beta #1",
                 title: "Challenger Trials Beta 1",
-                description: "The first Beta event of Challenger Trials! A new chapter begins with fierce competition and amazing plays.",
+                description: "The FIRST Challenger Trials Beta event!",
                 winner: { name: "Blue Beacons", icon: "blue-beacons.png" },
                 teams: [
                     { name: "Green Geese", color: "green", score: 9740, players: [
