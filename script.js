@@ -227,6 +227,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         twitchEmbed = new Twitch.Player("twitch-embed", {
+            width: "100%",
+            height: "100%",
             channel: "challengertrials",
             parent: parents
         });
