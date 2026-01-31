@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const contents = document.querySelectorAll('.tab-content');
     const transitionOverlay = document.getElementById('page-transition');
     let twitchEmbed = null;
+    let liveStandingsInterval = null;
 
     // Trigger initial load transition
     triggerTransition();
@@ -65,11 +66,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Initialize Twitch if Live tab is clicked and not already initialized
+        if (liveStandingsInterval) {
+            clearInterval(liveStandingsInterval);
+            liveStandingsInterval = null;
+        }
+
         if (target === 'live') {
             if (!twitchEmbed) {
                 initTwitch();
             }
             updateLiveStandings(); // Fetch and update scores
+            // Auto-refresh every 30 seconds
+            liveStandingsInterval = setInterval(updateLiveStandings, 30000);
         }
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -544,12 +552,17 @@ document.addEventListener('DOMContentLoaded', () => {
     async function updateLiveStandings() {
         // REPLACE THIS with your actual Koyeb URL
         const API_URL = 'https://determined-kore-challengertrials-f861d4c5.koyeb.app/teams';
+        const grid = document.querySelector('.teams-grid');
+        if (!grid) return;
         
         try {
             const response = await fetch(API_URL);
-            if (!response.ok) return;
+            if (!response.ok) throw new Error('API request failed');
             
             const data = await response.json();
+            
+            // Sort data by total score descending
+            data.sort((a, b) => b.total_score - a.total_score);
             
             data.forEach(team => {
                 // Finds the card (e.g., .team-red, .team-orange)
@@ -566,10 +579,24 @@ document.addEventListener('DOMContentLoaded', () => {
                             `<p>${p.name}: ${p.score.toLocaleString()}</p>`
                         ).join('');
                     }
+
+                    // Re-append to grid to reorder based on sorted data
+                    grid.appendChild(teamCard);
                 }
             });
         } catch (error) {
-            console.warn('Live standings API not available yet. Using static data.');
+            console.warn('Live standings API error or not available. Sorting existing cards by static scores.');
+            
+            // Fallback: Sort existing cards in the DOM by their current displayed scores
+            const cards = Array.from(grid.querySelectorAll('.team-card-score'));
+            cards.sort((a, b) => {
+                const scoreA = parseInt(a.querySelector('.score-main').textContent.replace(/,/g, '')) || 0;
+                const scoreB = parseInt(b.querySelector('.score-main').textContent.replace(/,/g, '')) || 0;
+                return scoreB - scoreA;
+            });
+
+            // Re-append in sorted order
+            cards.forEach(card => grid.appendChild(card));
         }
     }
 });
