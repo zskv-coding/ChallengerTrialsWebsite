@@ -473,13 +473,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Full team details for wide view
                     let fullStandingsHtml = eventData.teams.map(team => {
                         const playerHtml = team.players.map(p => {
-                            const pData = playerData.find(pd => pd.name === p.name);
+                            const pData = playerData.find(pd => pd.name.toLowerCase() === p.name.toLowerCase());
                             const uuid = pData ? pData.uuid : 'steve';
-                            const faceUrl = `https://crafatar.com/avatars/${uuid}?size=32&overlay`;
+                            const faceUrl = `https://mc-heads.net/avatar/${uuid}/32`;
                             return `
                                 <div class="player-score-item">
                                     <div class="player-name-face">
-                                        <img src="${faceUrl}" alt="${p.name}" class="mini-player-face">
+                                        <img src="${faceUrl}" alt="${p.name}" class="mini-player-face" onerror="this.src='https://mc-heads.net/avatar/steve/32'">
                                         <span>${p.name}</span>
                                     </div>
                                     <strong>${p.score.toLocaleString()}</strong>
