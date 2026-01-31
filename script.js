@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function initGameModals() {
         const modal = document.getElementById('game-modal');
         const modalTitle = document.getElementById('modal-title');
+        const modalIcon = document.getElementById('modal-icon');
         const modalDesc = document.getElementById('modal-description');
         const closeBtn = document.querySelector('.close-modal');
         const gameCards = document.querySelectorAll('.game-card');
@@ -147,6 +148,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (descriptions[gameKey]) {
                     modalTitle.textContent = card.querySelector('h2').textContent;
                     modalDesc.innerHTML = descriptions[gameKey];
+                    
+                    // Update icon
+                    const iconSrc = card.querySelector('.game-card-icon').src;
+                    modalIcon.src = iconSrc;
+                    modalIcon.alt = `${modalTitle.textContent} Icon`;
                     
                     // Update gallery images
                     galleryImages.forEach((img, index) => {
