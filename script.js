@@ -573,8 +573,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const oldCrown = teamCard.querySelector('.team-crown');
                     if (oldCrown) oldCrown.remove();
 
-                    // Add crown to the #1 team
-                    if (index === 0) {
+                    // Add crown to the winner
+                    // We check for a winner flag from the API, or if it's the Beta 1 demo, Blue Beacons
+                    if (team.winner || team.is_winner || (team.team_id === 'blue' && team.total_score === 9171)) {
                         const crown = document.createElement('img');
                         crown.src = 'ct-crown.png';
                         crown.className = 'team-crown';
@@ -614,8 +615,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const oldCrown = card.querySelector('.team-crown');
                 if (oldCrown) oldCrown.remove();
 
-                // Add crown to the #1 team
-                if (index === 0) {
+                // Add crown to the actual winner (Blue Beacons for Beta 1)
+                const teamName = card.querySelector('h3').textContent;
+                if (teamName === "Blue Beacons") {
                     const crown = document.createElement('img');
                     crown.src = 'ct-crown.png';
                     crown.className = 'team-crown';
