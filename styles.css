@@ -588,11 +588,30 @@ nav {
     background: rgba(0, 0, 0, 0.4);
     border-radius: 8px;
     padding: 20px;
+    padding-top: 35px; /* Add space for the crown */
     text-align: center;
     border: 2px solid transparent;
     transition: transform 0.3s ease;
     flex: 1 1 220px;
     max-width: 280px;
+    position: relative;
+}
+
+.team-crown {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: auto;
+    filter: drop-shadow(0 0 10px rgba(255, 204, 0, 0.6));
+    z-index: 5;
+    animation: crownFloat 3s ease-in-out infinite;
+}
+
+@keyframes crownFloat {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-5px); }
 }
 
 .team-card-score:hover {

@@ -564,11 +564,24 @@ document.addEventListener('DOMContentLoaded', () => {
             // Sort data by total score descending
             data.sort((a, b) => b.total_score - a.total_score);
             
-            data.forEach(team => {
+            data.forEach((team, index) => {
                 // Finds the card (e.g., .team-red, .team-orange)
                 const teamCard = document.querySelector(`.team-card-score.team-${team.team_id}`);
                 
                 if (teamCard) {
+                    // Remove existing crown if any
+                    const oldCrown = teamCard.querySelector('.team-crown');
+                    if (oldCrown) oldCrown.remove();
+
+                    // Add crown to the #1 team
+                    if (index === 0) {
+                        const crown = document.createElement('img');
+                        crown.src = 'ct-crown.png';
+                        crown.className = 'team-crown';
+                        crown.alt = 'Champion Crown';
+                        teamCard.prepend(crown);
+                    }
+
                     // Update main score
                     teamCard.querySelector('.score-main').textContent = team.total_score.toLocaleString();
                     
@@ -596,7 +609,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             // Re-append in sorted order
-            cards.forEach(card => grid.appendChild(card));
+            cards.forEach((card, index) => {
+                // Remove existing crown if any
+                const oldCrown = card.querySelector('.team-crown');
+                if (oldCrown) oldCrown.remove();
+
+                // Add crown to the #1 team
+                if (index === 0) {
+                    const crown = document.createElement('img');
+                    crown.src = 'ct-crown.png';
+                    crown.className = 'team-crown';
+                    crown.alt = 'Champion Crown';
+                    card.prepend(crown);
+                }
+                
+                grid.appendChild(card);
+            });
         }
     }
 });
