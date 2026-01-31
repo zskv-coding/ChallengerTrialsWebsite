@@ -754,7 +754,7 @@ nav {
     position: relative;
 }
 
-.game-icon-wrapper:hover::after {
+.game-icon-wrapper[data-game-name]:hover::after {
     content: attr(data-game-name);
     position: absolute;
     bottom: 100%;
@@ -773,7 +773,7 @@ nav {
     box-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-.game-icon-wrapper:hover::before {
+.game-icon-wrapper[data-game-name]:hover::before {
     content: '';
     position: absolute;
     bottom: 100%;
