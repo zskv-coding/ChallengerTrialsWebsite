@@ -477,21 +477,21 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="event-detail-section">
                             <h3><span class="icon">🎮</span> Games Played</h3>
                             <div class="games-played-icons">
-                                <div class="game-icon-wrapper"><img src="clockwork-icon.png" alt="Clockwork" title="Clockwork"></div>
+                                <div class="game-icon-wrapper" data-game-name="Clockwork"><img src="clockwork-icon.png" alt="Clockwork"></div>
                                 <div class="game-icon-wrapper arrow">→</div>
-                                <div class="game-icon-wrapper"><img src="farmrush-icon.png" alt="Farm Rush" title="Farm Rush"></div>
+                                <div class="game-icon-wrapper" data-game-name="Farm Rush"><img src="farmrush-icon.png" alt="Farm Rush"></div>
                                 <div class="game-icon-wrapper arrow">→</div>
-                                <div class="game-icon-wrapper"><img src="footrace-icon.png" alt="Footrace" title="Footrace"></div>
+                                <div class="game-icon-wrapper" data-game-name="Footrace"><img src="footrace-icon.png" alt="Footrace"></div>
                                 <div class="game-icon-wrapper arrow">→</div>
-                                <div class="game-icon-wrapper"><img src="parkour-icon.png" alt="Parkour Pathway" title="Parkour Pathway"></div>
+                                <div class="game-icon-wrapper" data-game-name="Parkour Pathway"><img src="parkour-icon.png" alt="Parkour Pathway"></div>
                                 <div class="game-icon-wrapper arrow">→</div>
-                                <div class="game-icon-wrapper"><img src="spleef-icon.png" alt="Spleef" title="Spleef"></div>
+                                <div class="game-icon-wrapper" data-game-name="Spleef"><img src="spleef-icon.png" alt="Spleef"></div>
                                 <div class="game-icon-wrapper arrow">→</div>
-                                <div class="game-icon-wrapper"><img src="survivalgames-icon.png" alt="Survival Games" title="Survival Games"></div>
+                                <div class="game-icon-wrapper" data-game-name="Survival Games"><img src="survivalgames-icon.png" alt="Survival Games"></div>
                                 <div class="game-icon-wrapper arrow">→</div>
-                                <div class="game-icon-wrapper"><img src="ctf-icon.png" alt="Capture the Flag" title="Capture the Flag"></div>
+                                <div class="game-icon-wrapper" data-game-name="Capture the Flag"><img src="ctf-icon.png" alt="Capture the Flag"></div>
                                 <div class="game-icon-wrapper arrow">→</div>
-                                <div class="game-icon-wrapper finale"><img src="ct-crown.png" alt="Finale" title="Finale"></div>
+                                <div class="game-icon-wrapper finale" data-game-name="Finale"><img src="ct-crown.png" alt="Finale"></div>
                             </div>
                         </div>
                         <div class="event-detail-section">

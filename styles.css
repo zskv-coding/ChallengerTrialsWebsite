@@ -751,6 +751,39 @@ nav {
     border-radius: 10px;
     padding: 8px;
     transition: transform 0.3s ease, background 0.3s ease;
+    position: relative;
+}
+
+.game-icon-wrapper:hover::after {
+    content: attr(data-game-name);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--maroon);
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    white-space: nowrap;
+    margin-bottom: 10px;
+    z-index: 10;
+    pointer-events: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.game-icon-wrapper:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--gold);
+    margin-bottom: -2px;
+    z-index: 10;
+    pointer-events: none;
 }
 
 .game-icon-wrapper:hover {
