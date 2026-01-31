@@ -316,61 +316,61 @@ document.addEventListener('DOMContentLoaded', () => {
                 description: "The FIRST Challenger Trials Beta event!",
                 winner: { name: "Blue Beacons", icon: "blue-beacons.png" },
                 teams: [
-                    { name: "Green Geese", color: "green", score: 9740, players: [
+                    { name: "Green Geese", color: "green", icon: "green-geese.png", score: 9740, players: [
                         { name: "hiitzhunter", score: 2968 },
                         { name: "SaltContent", score: 2572 },
                         { name: "sandich", score: 1600 },
                         { name: "Skate8", score: 2600 }
                     ]},
-                    { name: "Blue Beacons", color: "blue", score: 9171, players: [
+                    { name: "Blue Beacons", color: "blue", icon: "blue-beacons.png", score: 9171, players: [
                         { name: "madnes__", score: 1663 },
                         { name: "nooobi", score: 2285 },
                         { name: "Sacronix", score: 2980 },
                         { name: "Snoae", score: 2243 }
                     ]},
-                    { name: "Cyan Cyclones", color: "cyan", score: 8258, players: [
+                    { name: "Cyan Cyclones", color: "cyan", icon: "cyan-cyclones.png", score: 8258, players: [
                         { name: "Faistara", score: 2595 },
                         { name: "g4vy", score: 1846 },
                         { name: "itsnuku", score: 1829 },
                         { name: "Kbelik", score: 1988 }
                     ]},
-                    { name: "Orange Owls", color: "orange", score: 7920, players: [
+                    { name: "Orange Owls", color: "orange", icon: "orange-owls.png", score: 7920, players: [
                         { name: "C12dawg", score: 1852 },
                         { name: "QuartzIsCanon", score: 2237 },
                         { name: "Wo0o0o0ble_", score: 2072 },
                         { name: "WolfieLiam", score: 1759 }
                     ]},
-                    { name: "Yellow Yetis", color: "yellow", score: 7810, players: [
+                    { name: "Yellow Yetis", color: "yellow", icon: "yellow-yetis.png", score: 7810, players: [
                         { name: "Ess4nce", score: 2124 },
                         { name: "HoodieDuck_", score: 2204 },
                         { name: "ItzChoco", score: 1887 },
                         { name: "quizky", score: 1595 }
                     ]},
-                    { name: "Red Robots", color: "red", score: 7423, players: [
+                    { name: "Red Robots", color: "red", icon: "red-robots.png", score: 7423, players: [
                         { name: "daneloldane", score: 1354 },
                         { name: "Krumbld", score: 2257 },
                         { name: "MiniBoru", score: 1502 },
                         { name: "MrCakeness", score: 2310 }
                     ]},
-                    { name: "Pink Pilots", color: "pink", score: 6840, players: [
+                    { name: "Pink Pilots", color: "pink", icon: "pink-pilots.png", score: 6840, players: [
                         { name: "Percee_", score: 941 },
                         { name: "PizzaBuff", score: 1815 },
                         { name: "PorcChrysus", score: 2252 },
                         { name: "ProfPie2000", score: 1832 }
                     ]},
-                    { name: "Aqua Aliens", color: "aqua", score: 6768, players: [
+                    { name: "Aqua Aliens", color: "aqua", icon: "aqua-aliens.png", score: 6768, players: [
                         { name: "Chandiggitydog", score: 2286 },
                         { name: "Ka1b23i", score: 974 },
                         { name: "SpoonyTable", score: 2026 },
                         { name: "TinyRiotx", score: 1482 }
                     ]},
-                    { name: "Lime Lizards", color: "lime", score: 6686, players: [
+                    { name: "Lime Lizards", color: "lime", icon: "lime-lizards.png", score: 6686, players: [
                         { name: "DylanWMC", score: 1538 },
                         { name: "McZeal", score: 1062 },
                         { name: "Messyo", score: 2312 },
                         { name: "xd_Bayern", score: 1774 }
                     ]},
-                    { name: "Purple Pirates", color: "purple", score: 5147, players: [
+                    { name: "Purple Pirates", color: "purple", icon: "purple-pirates.png", score: 5147, players: [
                         { name: "CHALLY073763", score: 1130 },
                         { name: "RedTheCactus", score: 983 },
                         { name: "SlothRSR", score: 1161 },
@@ -450,7 +450,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     let teamStandingsHtml = eventData.teams.map((team, idx) => `
                         <div class="mini-standing-row">
                             <span class="rank">${idx + 1}${idx === 0 ? 'st' : idx === 1 ? 'nd' : idx === 2 ? 'rd' : 'th'}</span>
-                            <span class="team-name color-${team.color}">${team.name}</span>
+                            <div class="team-name color-${team.color}">
+                                <img src="${team.icon}" alt="${team.name}" class="mini-team-icon">
+                                <span>${team.name}</span>
+                            </div>
                             <span class="points">${team.score.toLocaleString()}</span>
                         </div>
                     `).join('');

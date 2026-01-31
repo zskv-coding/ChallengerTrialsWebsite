@@ -943,8 +943,21 @@ nav {
 .mini-standing-row:nth-child(3) .rank, .mini-indiv-row:nth-child(3) .rank { color: #c0c0c0; }
 .mini-standing-row:nth-child(4) .rank, .mini-indiv-row:nth-child(4) .rank { color: #cd7f32; }
 
-.team-name, .player-name {
+.team-name {
     flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.player-name {
+    flex: 1;
+}
+
+.mini-team-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
 }
 
 .points {
@@ -952,9 +965,27 @@ nav {
     color: #fff;
 }
 
-.color-purple { color: #bf00ff; }
-.color-red { color: #ff4d4d; }
-.color-cyan { color: #00ced1; }
+.color-red, .team-dot.color-red { color: #ff4d4d; }
+.color-orange, .team-dot.color-orange { color: #ffa500; }
+.color-yellow, .team-dot.color-yellow { color: #ffff00; }
+.color-lime, .team-dot.color-lime { color: #32cd32; }
+.color-green, .team-dot.color-green { color: #008000; }
+.color-cyan, .team-dot.color-cyan { color: #00ced1; }
+.color-aqua, .team-dot.color-aqua { color: #00ffff; }
+.color-blue, .team-dot.color-blue { color: #4d4dff; }
+.color-purple, .team-dot.color-purple { color: #bf00ff; }
+.color-pink, .team-dot.color-pink { color: #ff69b4; }
+
+.team-dot.color-red { background-color: #ff4d4d; }
+.team-dot.color-orange { background-color: #ffa500; }
+.team-dot.color-yellow { background-color: #ffff00; }
+.team-dot.color-lime { background-color: #32cd32; }
+.team-dot.color-green { background-color: #008000; }
+.team-dot.color-cyan { background-color: #00ced1; }
+.team-dot.color-aqua { background-color: #00ffff; }
+.team-dot.color-blue { background-color: #4d4dff; }
+.team-dot.color-purple { background-color: #bf00ff; }
+.team-dot.color-pink { background-color: #ff69b4; }
 
 @media (max-width: 768px) {
     .event-card-body {
