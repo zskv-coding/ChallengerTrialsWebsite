@@ -923,6 +923,10 @@ nav {
     border-radius: 3px;
 }
 
+.long-name {
+    font-size: 0.85em !important;
+}
+
 .player-score-item span {
     color: #ccc;
 }

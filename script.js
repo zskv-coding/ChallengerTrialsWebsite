@@ -465,7 +465,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     let topPlayersHtml = eventData.topPlayers.map((player, idx) => `
                         <div class="mini-indiv-row">
                             <span class="rank">${idx + 1}${idx === 0 ? 'st' : idx === 1 ? 'nd' : idx === 2 ? 'rd' : 'th'}</span>
-                            <span class="player-name">${player.name}</span>
+                            <span class="player-name ${player.name.length > 12 ? 'long-name' : ''}">${player.name}</span>
                             <span class="points">${player.score.toLocaleString()}</span>
                         </div>
                     `).join('');
@@ -480,7 +480,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="player-score-item">
                                     <div class="player-name-face">
                                         <img src="${faceUrl}" alt="${p.name}" class="mini-player-face" onerror="this.src='https://mc-heads.net/avatar/steve/32'">
-                                        <span>${p.name}</span>
+                                        <span class="${p.name.length > 12 ? 'long-name' : ''}">${p.name}</span>
                                     </div>
                                     <strong>${p.score.toLocaleString()}</strong>
                                 </div>
@@ -608,7 +608,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             return `
                                 <div class="live-player-row">
                                     <img src="${faceUrl}" alt="${p.name}" class="live-player-face" onerror="this.src='https://mc-heads.net/avatar/steve/24'">
-                                    <span>${p.name}: ${p.score.toLocaleString()}</span>
+                                    <span class="${p.name.length > 12 ? 'long-name' : ''}">${p.name}: ${p.score.toLocaleString()}</span>
                                 </div>
                             `;
                         }).join('');
@@ -658,7 +658,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         return `
                             <div class="live-player-row">
                                 <img src="${faceUrl}" alt="${name}" class="live-player-face" onerror="this.src='https://mc-heads.net/avatar/steve/24'">
-                                <span>${name}: ${score}</span>
+                                <span class="${name.length > 12 ? 'long-name' : ''}">${name}: ${score}</span>
                             </div>
                         `;
                     }).join('');
