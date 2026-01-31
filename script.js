@@ -602,12 +602,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     const playerList = teamCard.querySelector('.player-list');
                     if (playerList && team.players) {
                         playerList.innerHTML = team.players.map(p => {
-                            const pData = playerData.find(pd => pd.name === p.name);
+                            const pData = playerData.find(pd => pd.name.toLowerCase() === p.name.toLowerCase());
                             const uuid = p.uuid || (pData ? pData.uuid : 'steve');
-                            const faceUrl = `https://crafatar.com/avatars/${uuid}?size=24&overlay`;
+                            const faceUrl = `https://mc-heads.net/avatar/${uuid}/24`;
                             return `
                                 <div class="live-player-row">
-                                    <img src="${faceUrl}" alt="${p.name}" class="live-player-face">
+                                    <img src="${faceUrl}" alt="${p.name}" class="live-player-face" onerror="this.src='https://mc-heads.net/avatar/steve/24'">
                                     <span>${p.name}: ${p.score.toLocaleString()}</span>
                                 </div>
                             `;
@@ -652,12 +652,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     playerList.innerHTML = players.map(pElement => {
                         const text = pElement.textContent;
                         const [name, score] = text.split(':').map(s => s.trim());
-                        const pData = playerData.find(pd => pd.name === name);
+                        const pData = playerData.find(pd => pd.name.toLowerCase() === name.toLowerCase());
                         const uuid = pData ? pData.uuid : 'steve';
-                        const faceUrl = `https://crafatar.com/avatars/${uuid}?size=24&overlay`;
+                        const faceUrl = `https://mc-heads.net/avatar/${uuid}/24`;
                         return `
                             <div class="live-player-row">
-                                <img src="${faceUrl}" alt="${name}" class="live-player-face">
+                                <img src="${faceUrl}" alt="${name}" class="live-player-face" onerror="this.src='https://mc-heads.net/avatar/steve/24'">
                                 <span>${name}: ${score}</span>
                             </div>
                         `;
