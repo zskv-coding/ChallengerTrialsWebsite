@@ -439,10 +439,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 if (eventData.placeholder) {
                     detailInfo.innerHTML = `
-                        <div class="event-detail-section">
-                            <h3><span class="icon">ℹ️</span> Description</h3>
-                            <p>${eventData.description}</p>
-                        </div>
                         <div class="event-detail-grid">
                             <div class="event-detail-section">
                                 <h3><span class="icon">🏆</span> Top Teams</h3>
@@ -475,14 +471,34 @@ document.addEventListener('DOMContentLoaded', () => {
                     `).join('');
 
                     // Full team details for wide view
-                    let fullStandingsHtml = eventData.teams.map(team => `
-                        <div class="event-detail-section">
-                            <h3><span class="team-dot color-${team.color}"></span> ${team.name} - ${team.score.toLocaleString()}</h3>
-                            <div class="player-score-grid">
-                                ${team.players.map(p => `<div class="player-score-item"><span>${p.name}</span> <strong>${p.score.toLocaleString()}</strong></div>`).join('')}
+                    let fullStandingsHtml = eventData.teams.map(team => {
+                        const playerHtml = team.players.map(p => {
+                            const pData = playerData.find(pd => pd.name === p.name);
+                            const uuid = pData ? pData.uuid : 'steve';
+                            const faceUrl = `https://crafatar.com/avatars/${uuid}?size=32&overlay`;
+                            return `
+                                <div class="player-score-item">
+                                    <div class="player-name-face">
+                                        <img src="${faceUrl}" alt="${p.name}" class="mini-player-face">
+                                        <span>${p.name}</span>
+                                    </div>
+                                    <strong>${p.score.toLocaleString()}</strong>
+                                </div>
+                            `;
+                        }).join('');
+
+                        return `
+                            <div class="event-detail-section">
+                                <h3 class="team-header-with-icon">
+                                    <img src="${team.icon}" alt="${team.name}" class="mini-team-icon-header">
+                                    <span>${team.name} - ${team.score.toLocaleString()}</span>
+                                </h3>
+                                <div class="player-score-grid">
+                                    ${playerHtml}
+                                </div>
                             </div>
-                        </div>
-                    `).join('');
+                        `;
+                    }).join('');
 
                     detailInfo.innerHTML = `
                         <div class="event-detail-section">
@@ -504,10 +520,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="game-icon-wrapper arrow">→</div>
                                 <div class="game-icon-wrapper finale" data-game-name="Finale"><img src="ct-crown.png" alt="Finale"></div>
                             </div>
-                        </div>
-                        <div class="event-detail-section">
-                            <h3><span class="icon">ℹ️</span> Description</h3>
-                            <p>${eventData.description}</p>
                         </div>
                         <div class="event-detail-grid">
                             <div class="event-detail-section">
@@ -589,9 +601,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Update player list
                     const playerList = teamCard.querySelector('.player-list');
                     if (playerList && team.players) {
-                        playerList.innerHTML = team.players.map(p => 
-                            `<p>${p.name}: ${p.score.toLocaleString()}</p>`
-                        ).join('');
+                        playerList.innerHTML = team.players.map(p => {
+                            const pData = playerData.find(pd => pd.name === p.name);
+                            const uuid = p.uuid || (pData ? pData.uuid : 'steve');
+                            const faceUrl = `https://crafatar.com/avatars/${uuid}?size=24&overlay`;
+                            return `
+                                <div class="live-player-row">
+                                    <img src="${faceUrl}" alt="${p.name}" class="live-player-face">
+                                    <span>${p.name}: ${p.score.toLocaleString()}</span>
+                                </div>
+                            `;
+                        }).join('');
                     }
 
                     // Re-append to grid to reorder based on sorted data
@@ -609,7 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return scoreB - scoreA;
             });
 
-            // Re-append in sorted order
+            // Re-append in sorted order and ensure faces are shown
             cards.forEach((card, index) => {
                 // Remove existing crown if any
                 const oldCrown = card.querySelector('.team-crown');
@@ -623,6 +643,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     crown.className = 'team-crown';
                     crown.alt = 'Champion Crown';
                     card.prepend(crown);
+                }
+
+                // Update static player list to include faces if not already there
+                const playerList = card.querySelector('.player-list');
+                if (playerList) {
+                    const players = Array.from(playerList.querySelectorAll('p, .live-player-row'));
+                    playerList.innerHTML = players.map(pElement => {
+                        const text = pElement.textContent;
+                        const [name, score] = text.split(':').map(s => s.trim());
+                        const pData = playerData.find(pd => pd.name === name);
+                        const uuid = pData ? pData.uuid : 'steve';
+                        const faceUrl = `https://crafatar.com/avatars/${uuid}?size=24&overlay`;
+                        return `
+                            <div class="live-player-row">
+                                <img src="${faceUrl}" alt="${name}" class="live-player-face">
+                                <span>${name}: ${score}</span>
+                            </div>
+                        `;
+                    }).join('');
                 }
                 
                 grid.appendChild(card);
