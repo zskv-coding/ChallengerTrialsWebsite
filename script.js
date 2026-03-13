@@ -408,9 +408,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 ]
             },
             2: {
-                tag: "CT #2B",
-                title: "Challenger Trials #2B",
-                description: "The Aqua Aliens take the crown in this intense CT #2B event!",
+                tag: "Beta #2",
+                title: "Challenger Trials Beta 2",
+                description: "The Aqua Aliens take the crown in this intense Beta #2 event!",
                 winner: { name: "Aqua Aliens", icon: "aqua-aliens.png" },
                 games: [
                     { name: "Clockwork", icon: "clockwork-icon.png" },
