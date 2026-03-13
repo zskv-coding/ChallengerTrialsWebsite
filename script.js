@@ -297,12 +297,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (player.scores.length === 0) {
                 scoresList.innerHTML = '<p class="no-data">No event history available yet.</p>';
             } else {
-                player.scores.forEach((score, index) => {
+                player.scores.forEach((scoreEntry, index) => {
                     const scoreItem = document.createElement('div');
                     scoreItem.className = 'score-item';
+                    
+                    // Handle both object format and legacy number format
+                    const eventName = scoreEntry.event || `Event ${index + 1}`;
+                    const scoreValue = scoreEntry.score !== undefined ? scoreEntry.score : scoreEntry;
+                    
                     scoreItem.innerHTML = `
-                        <span class="event-name">Event ${index + 1}</span>
-                        <span class="event-score">${score}</span>
+                        <span class="event-name">${eventName}</span>
+                        <span class="event-score">${scoreValue.toLocaleString()}</span>
                     `;
                     scoresList.appendChild(scoreItem);
                 });
