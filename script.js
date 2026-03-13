@@ -419,7 +419,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     { name: "Spleef", icon: "spleef-icon.png" },
                     { name: "Footrace", icon: "footrace-icon.png" },
                     { name: "Parkour Pathway", icon: "parkour-icon.png" },
-                    { name: "Capture the Flag", icon: "ctf-icon.png" }
+                    { name: "Capture the Flag", icon: "ctf-icon.png" },
+                    { name: "Finale", icon: "ct-crown.png" }
                 ],
                 teams: [
                     { name: "Aqua Aliens", color: "aqua", icon: "aqua-aliens.png", score: 27019, players: [
