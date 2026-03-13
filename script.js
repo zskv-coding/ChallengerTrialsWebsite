@@ -329,6 +329,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: "Challenger Trials Beta 1",
                 description: "The FIRST Challenger Trials Beta event!",
                 winner: { name: "Blue Beacons", icon: "blue-beacons.png" },
+                games: [
+                    { name: "Clockwork", icon: "clockwork-icon.png" },
+                    { name: "Farm Rush", icon: "farmrush-icon.png" },
+                    { name: "Footrace", icon: "footrace-icon.png" },
+                    { name: "Parkour Pathway", icon: "parkour-icon.png" },
+                    { name: "Spleef", icon: "spleef-icon.png" },
+                    { name: "Survival Games", icon: "survivalgames-icon.png" },
+                    { name: "Capture the Flag", icon: "ctf-icon.png" },
+                    { name: "Finale", icon: "ct-crown.png" }
+                ],
                 teams: [
                     { name: "Blue Beacons", color: "blue", icon: "blue-beacons.png", score: 25891, players: [
                         { name: "madnes__", score: 1663 },
@@ -402,6 +412,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 title: "Challenger Trials #2B",
                 description: "The Aqua Aliens take the crown in this intense CT #2B event!",
                 winner: { name: "Aqua Aliens", icon: "aqua-aliens.png" },
+                games: [
+                    { name: "Clockwork", icon: "clockwork-icon.png" },
+                    { name: "Farm Rush", icon: "farmrush-icon.png" },
+                    { name: "Survival Games", icon: "survivalgames-icon.png" },
+                    { name: "Spleef", icon: "spleef-icon.png" },
+                    { name: "Footrace", icon: "footrace-icon.png" },
+                    { name: "Parkour Pathway", icon: "parkour-icon.png" },
+                    { name: "Capture the Flag", icon: "ctf-icon.png" }
+                ],
                 teams: [
                     { name: "Aqua Aliens", color: "aqua", icon: "aqua-aliens.png", score: 27019, players: [
                         { name: "EvilBuggyJman", score: 2349 },
@@ -579,25 +598,38 @@ document.addEventListener('DOMContentLoaded', () => {
                         `;
                     }).join('');
 
+                    let gamesHtml = "";
+                    if (eventData.games) {
+                        gamesHtml = eventData.games.map((game, idx) => `
+                            <div class="game-icon-wrapper" data-game-name="${game.name}"><img src="${game.icon}" alt="${game.name}"></div>
+                            ${idx < eventData.games.length - 1 ? '<div class="game-icon-wrapper arrow">→</div>' : ''}
+                        `).join('');
+                    } else {
+                        // Fallback
+                        gamesHtml = `
+                            <div class="game-icon-wrapper" data-game-name="Clockwork"><img src="clockwork-icon.png" alt="Clockwork"></div>
+                            <div class="game-icon-wrapper arrow">→</div>
+                            <div class="game-icon-wrapper" data-game-name="Farm Rush"><img src="farmrush-icon.png" alt="Farm Rush"></div>
+                            <div class="game-icon-wrapper arrow">→</div>
+                            <div class="game-icon-wrapper" data-game-name="Footrace"><img src="footrace-icon.png" alt="Footrace"></div>
+                            <div class="game-icon-wrapper arrow">→</div>
+                            <div class="game-icon-wrapper" data-game-name="Parkour Pathway"><img src="parkour-icon.png" alt="Parkour Pathway"></div>
+                            <div class="game-icon-wrapper arrow">→</div>
+                            <div class="game-icon-wrapper" data-game-name="Spleef"><img src="spleef-icon.png" alt="Spleef"></div>
+                            <div class="game-icon-wrapper arrow">→</div>
+                            <div class="game-icon-wrapper" data-game-name="Survival Games"><img src="survivalgames-icon.png" alt="Survival Games"></div>
+                            <div class="game-icon-wrapper arrow">→</div>
+                            <div class="game-icon-wrapper" data-game-name="Capture the Flag"><img src="ctf-icon.png" alt="Capture the Flag"></div>
+                            <div class="game-icon-wrapper arrow">→</div>
+                            <div class="game-icon-wrapper finale" data-game-name="Finale"><img src="ct-crown.png" alt="Finale"></div>
+                        `;
+                    }
+
                     detailInfo.innerHTML = `
                         <div class="event-detail-section">
                             <h3><span class="icon">🎮</span> Games Played</h3>
                             <div class="games-played-icons">
-                                <div class="game-icon-wrapper" data-game-name="Clockwork"><img src="clockwork-icon.png" alt="Clockwork"></div>
-                                <div class="game-icon-wrapper arrow">→</div>
-                                <div class="game-icon-wrapper" data-game-name="Farm Rush"><img src="farmrush-icon.png" alt="Farm Rush"></div>
-                                <div class="game-icon-wrapper arrow">→</div>
-                                <div class="game-icon-wrapper" data-game-name="Footrace"><img src="footrace-icon.png" alt="Footrace"></div>
-                                <div class="game-icon-wrapper arrow">→</div>
-                                <div class="game-icon-wrapper" data-game-name="Parkour Pathway"><img src="parkour-icon.png" alt="Parkour Pathway"></div>
-                                <div class="game-icon-wrapper arrow">→</div>
-                                <div class="game-icon-wrapper" data-game-name="Spleef"><img src="spleef-icon.png" alt="Spleef"></div>
-                                <div class="game-icon-wrapper arrow">→</div>
-                                <div class="game-icon-wrapper" data-game-name="Survival Games"><img src="survivalgames-icon.png" alt="Survival Games"></div>
-                                <div class="game-icon-wrapper arrow">→</div>
-                                <div class="game-icon-wrapper" data-game-name="Capture the Flag"><img src="ctf-icon.png" alt="Capture the Flag"></div>
-                                <div class="game-icon-wrapper arrow">→</div>
-                                <div class="game-icon-wrapper finale" data-game-name="Finale"><img src="ct-crown.png" alt="Finale"></div>
+                                ${gamesHtml}
                             </div>
                         </div>
                         <div class="event-detail-grid">
@@ -714,9 +746,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const oldCrown = card.querySelector('.team-crown');
                 if (oldCrown) oldCrown.remove();
 
-                // Add crown to the actual winner (Blue Beacons for Beta 1)
+                // Add crown to the actual winner (Aqua Aliens for CT #2B)
                 const teamName = card.querySelector('h3').textContent;
-                if (teamName === "Blue Beacons") {
+                if (teamName === "Aqua Aliens") {
                     const crown = document.createElement('img');
                     crown.src = 'ct-crown.png';
                     crown.className = 'team-crown';
@@ -730,14 +762,21 @@ document.addEventListener('DOMContentLoaded', () => {
                     const players = Array.from(playerList.querySelectorAll('p, .live-player-row'));
                     playerList.innerHTML = players.map(pElement => {
                         const text = pElement.textContent;
-                        const [name, score] = text.split(':').map(s => s.trim());
+                        let name, score;
+                        if (text.includes(':')) {
+                            [name, score] = text.split(':').map(s => s.trim());
+                        } else {
+                            name = text.trim();
+                            score = null;
+                        }
+                        
                         const pData = playerData.find(pd => pd.name.toLowerCase() === name.toLowerCase());
                         const uuid = pData ? pData.uuid : 'steve';
                         const faceUrl = `https://mc-heads.net/avatar/${uuid}/24`;
                         return `
                             <div class="live-player-row">
                                 <img src="${faceUrl}" alt="${name}" class="live-player-face" onerror="this.src='https://mc-heads.net/avatar/steve/24'">
-                                <span class="${name.length > 12 ? 'long-name' : ''}">${name}: ${score}</span>
+                                <span class="${name.length > 12 ? 'long-name' : ''}">${name}${score ? ': ' + score : ''}</span>
                             </div>
                         `;
                     }).join('');
