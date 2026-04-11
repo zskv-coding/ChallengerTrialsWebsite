@@ -329,6 +329,77 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!grid) return;
 
         const eventDataMap = {
+            3: {
+                tag: "Beta #3",
+                title: "Challenger Trials Beta 3",
+                description: "Pink Pilots take the crown in this intense Beta #3 event!",
+                winner: { name: "Pink Pilots", icon: "pink-pilots.png" },
+                games: [
+                    { name: "Spleef", icon: "spleef-icon.png" },
+                    { name: "Farm Rush", icon: "farmrush-icon.png" },
+                    { name: "Clockwork", icon: "clockwork-icon.png" },
+                    { name: "Parkour Pathway", icon: "parkour-icon.png" },
+                    { name: "Survival Games", icon: "survivalgames-icon.png" },
+                    { name: "Footrace", icon: "footrace-icon.png" },
+                    { name: "Capture the Flag", icon: "ctf-icon.png" },
+                    { name: "Finale", icon: "ct-crown.png" }
+                ],
+                teams: [
+                    { name: "Blue Beacons", color: "blue", icon: "blue-beacons.png", score: 20511, players: [
+                        { name: "DerGehasste", score: 1959 },
+                        { name: "Wo0o0o0ble_", score: 1761 },
+                        { name: "PizzaBuff", score: 1495 },
+                        { name: "zombreyy", score: 806 }
+                    ]},
+                    { name: "Pink Pilots", color: "pink", icon: "pink-pilots.png", score: 19296, players: [
+                        { name: "ThatzRed", score: 2093 },
+                        { name: "SpoonyTable", score: 2049 },
+                        { name: "ProfPie2000", score: 1949 },
+                        { name: "FishStride", score: 1742 }
+                    ]},
+                    { name: "Yellow Yetis", color: "yellow", icon: "yellow-yetis.png", score: 16857, players: [
+                        { name: "McHunt132", score: 2305 },
+                        { name: "CdogThePro", score: 1847 },
+                        { name: "Bluekwyrm", score: 1650 },
+                        { name: "LovefromNyxMC", score: 734 }
+                    ]},
+                    { name: "Cyan Cyclones", color: "cyan", icon: "cyan-cyclones.png", score: 16792, players: [
+                        { name: "HoodieDuck_", score: 2005 },
+                        { name: "Stehllar_", score: 1955 },
+                        { name: "PorcChrysus", score: 1773 },
+                        { name: "6ProUp4", score: 1126 }
+                    ]},
+                    { name: "Purple Pirates", color: "purple", icon: "purple-pirates.png", score: 16214, players: [
+                        { name: "Jokana_san", score: 1854 },
+                        { name: "FaZe_Bayern", score: 1788 },
+                        { name: "XclamationPoint", score: 1572 },
+                        { name: "pennycantread", score: 1468 }
+                    ]},
+                    { name: "Lime Lizards", color: "lime", icon: "lime-lizards.png", score: 16212, players: [
+                        { name: "Apples05", score: 2040 },
+                        { name: "Xpar17", score: 1594 },
+                        { name: "StarSnowLeopard", score: 1521 },
+                        { name: "WolfieLiam", score: 1211 }
+                    ]},
+                    { name: "Red Robots", color: "red", icon: "red-robots.png", score: 13500, players: [
+                        { name: "Skate8", score: 2123 },
+                        { name: "KubaBabilon", score: 1598 },
+                        { name: "CHALLY073763", score: 917 },
+                        { name: "_Butter_Boi_", score: 759 }
+                    ]},
+                    { name: "Orange Owls", color: "orange", icon: "orange-owls.png", score: 12912, players: [
+                        { name: "mintnhi", score: 2152 },
+                        { name: "RedTheCactus", score: 1449 },
+                        { name: "MrCakeness", score: 1406 },
+                        { name: "GeneralAlexMC", score: 1272 }
+                    ]}
+                ],
+                topPlayers: [
+                    { name: "McHunt132", score: 2305 },
+                    { name: "mintnhi", score: 2152 },
+                    { name: "Skate8", score: 2123 }
+                ]
+            },
             1: {
                 tag: "Beta #1",
                 title: "Challenger Trials Beta 1",
@@ -498,7 +569,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Generate Previous Events
-        for (let i = 2; i >= 1; i--) {
+        for (let i = 3; i >= 1; i--) {
             let eventData;
             
             if (eventDataMap[i]) {
@@ -752,9 +823,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const oldCrown = card.querySelector('.team-crown');
                 if (oldCrown) oldCrown.remove();
 
-                // Add crown to the actual winner (Aqua Aliens for CT #2B)
+                // Add crown to the actual winner (Pink Pilots for Beta #3)
                 const teamName = card.querySelector('h3').textContent;
-                if (teamName === "Aqua Aliens") {
+                if (teamName === "Pink Pilots") {
                     const crown = document.createElement('img');
                     crown.src = 'ct-crown.png';
                     crown.className = 'team-crown';
