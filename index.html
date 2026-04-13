@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Challenger Trials</title>
 
-    <!-- Favicon -->
     <link rel="icon" type="image/png" href="favicon.png">
 
-    <!-- Social Media Embeds (Open Graph) -->
     <meta property="og:title" content="Challenger Trials">
     <meta property="og:site_name" content="Challenger Trials">
     <meta property="og:description" content="Official website for the Challenger Trials Minecraft event.">
@@ -17,7 +15,6 @@
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#5a0001">
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@ChallengerTrial">
     <meta name="twitter:title" content="Challenger Trials">
@@ -37,6 +34,7 @@
     </div>
     <header>
         <div class="header-background"></div>
+        <button id="animation-toggle" class="animation-toggle">Animations: ON</button>
         <div class="container header-content">
             <img src="ct_fulltext.png" alt="Challenger Trials" class="main-logo">
             <p class="header-subtitle">A Minecraft event for content creators of all size.</p>
@@ -151,7 +149,6 @@
             </div>
         </section>
 
-        <!-- Game Info Modal -->
         <div id="game-modal" class="modal">
             <div class="modal-content">
                 <span class="close-modal">&times;</span>
@@ -169,7 +166,6 @@
             </div>
         </div>
 
-        <!-- Player Info Modal -->
         <div id="player-modal" class="modal">
             <div class="modal-content player-modal-content">
                 <span class="close-modal player-close-modal">&times;</span>
@@ -201,13 +197,11 @@
                 <div class="player-history">
                     <h3>Event History</h3>
                     <div id="player-scores-list" class="scores-list">
-                        <!-- Scores will be injected here -->
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Event Info Modal -->
         <div id="event-modal" class="modal">
             <div class="modal-content event-modal-content">
                 <span class="close-modal event-close-modal">&times;</span>
@@ -216,12 +210,10 @@
                     <h2 id="event-detail-title">Event Title</h2>
                 </div>
                 <div id="event-detail-full-info">
-                    <!-- Detailed info will be injected here -->
                 </div>
             </div>
         </div>
 
-        <!-- Lightbox for images -->
         <div id="lightbox" class="lightbox">
             <span class="close-lightbox">&times;</span>
             <img class="lightbox-img" id="lightbox-img">
@@ -231,7 +223,6 @@
             <div class="container">
                 <h2 class="section-title">Event Players</h2>
                 <div id="players-grid" class="players-grid">
-                    <!-- Players will be dynamically loaded here -->
                 </div>
             </div>
         </section>
@@ -281,7 +272,7 @@
                         <div class="team-card-score team-blue">
                             <img src="blue-beacons.png" alt="Blue Beacons" class="team-icon">
                             <h3>Blue Beacons</h3>
-                            <div class="score-main">20,511</div>
+                            <div class="score-main">20,503</div>
                             <div class="player-list">
                                 <p>DerGehasste</p>
                                 <p>Wo0o0o0ble_</p>
@@ -293,7 +284,7 @@
                             <img src="ct-crown.png" alt="Champion Crown" class="team-crown">
                             <img src="pink-pilots.png" alt="Pink Pilots" class="team-icon">
                             <h3>Pink Pilots</h3>
-                            <div class="score-main">19,296</div>
+                            <div class="score-main">19,282</div>
                             <div class="player-list">
                                 <p>ThatzRed</p>
                                 <p>SpoonyTable</p>
@@ -304,7 +295,7 @@
                         <div class="team-card-score team-yellow">
                             <img src="yellow-yetis.png" alt="Yellow Yetis" class="team-icon">
                             <h3>Yellow Yetis</h3>
-                            <div class="score-main">16,857</div>
+                            <div class="score-main">16,850</div>
                             <div class="player-list">
                                 <p>McHunt132</p>
                                 <p>CdogThePro</p>
@@ -315,7 +306,7 @@
                         <div class="team-card-score team-cyan">
                             <img src="cyan-cyclones.png" alt="Cyan Cyclones" class="team-icon">
                             <h3>Cyan Cyclones</h3>
-                            <div class="score-main">16,792</div>
+                            <div class="score-main">16,781</div>
                             <div class="player-list">
                                 <p>HoodieDuck_</p>
                                 <p>Stehllar_</p>
@@ -326,7 +317,7 @@
                         <div class="team-card-score team-purple">
                             <img src="purple-pirates.png" alt="Purple Pirates" class="team-icon">
                             <h3>Purple Pirates</h3>
-                            <div class="score-main">16,214</div>
+                            <div class="score-main">16,205</div>
                             <div class="player-list">
                                 <p>Jokana_san</p>
                                 <p>FaZe_Bayern</p>
@@ -337,7 +328,7 @@
                         <div class="team-card-score team-lime">
                             <img src="lime-lizards.png" alt="Lime Lizards" class="team-icon">
                             <h3>Lime Lizards</h3>
-                            <div class="score-main">16,212</div>
+                            <div class="score-main">16,202</div>
                             <div class="player-list">
                                 <p>Apples05</p>
                                 <p>Xpar17</p>
@@ -348,7 +339,7 @@
                         <div class="team-card-score team-red">
                             <img src="red-robots.png" alt="Red Robots" class="team-icon">
                             <h3>Red Robots</h3>
-                            <div class="score-main">13,500</div>
+                            <div class="score-main">13,495</div>
                             <div class="player-list">
                                 <p>Skate8</p>
                                 <p>KubaBabilon</p>
@@ -359,7 +350,7 @@
                         <div class="team-card-score team-orange">
                             <img src="orange-owls.png" alt="Orange Owls" class="team-icon">
                             <h3>Orange Owls</h3>
-                            <div class="score-main">12,912</div>
+                            <div class="score-main">12,907</div>
                             <div class="player-list">
                                 <p>mintnhi</p>
                                 <p>RedTheCactus</p>
@@ -373,7 +364,6 @@
                 <div class="previous-events-section">
                     <h2 class="section-title">Previous Events</h2>
                     <div id="previous-events-list" class="events-list">
-                        <!-- Previous events will be loaded here -->
                     </div>
                 </div>
             </div>
@@ -382,7 +372,7 @@
 
     <footer>
         <div class="container">
-            <p>Challenger Trials is a event created by SgtShotgun</p>
+            <p>Challenger Trials is an event created by SgtShotgun</p>
         </div>
     </footer>
 

@@ -28,7 +28,6 @@ body.loading {
     overflow: hidden;
 }
 
-/* Page Transition */
 .page-transition {
     position: fixed;
     top: 0;
@@ -132,7 +131,6 @@ body.loading {
     padding: 0 20px;
 }
 
-/* Header & Nav */
 header {
     background: #3a0001;
     border-bottom: 4px solid var(--gold);
@@ -141,6 +139,31 @@ header {
     box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     position: relative;
     overflow: hidden;
+}
+
+.animation-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 10;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 8px 15px;
+    font-family: 'Fredoka', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.animation-toggle:hover {
+    background: var(--gold);
+    color: var(--maroon);
 }
 
 .header-background {
@@ -153,7 +176,7 @@ header {
     background-size: cover;
     background-position: center;
     filter: blur(10px) brightness(0.6);
-    transform: scale(1.1); /* Prevent blur edges from showing */
+    transform: scale(1.1);
     z-index: 1;
 }
 
@@ -230,6 +253,10 @@ nav {
     animation: fadeIn 0.5s ease;
 }
 
+body.no-animations .tab-content {
+    animation: none;
+}
+
 .tab-content.active {
     display: block;
 }
@@ -239,7 +266,6 @@ nav {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Home Section */
 .home-grid {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -353,7 +379,6 @@ nav {
     }
 }
 
-/* Applications Section */
 .section-intro {
     text-align: center;
     max-width: 800px;
@@ -404,7 +429,6 @@ nav {
     width: 100%;
 }
 
-/* Games Grid */
 .games-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -505,8 +529,6 @@ nav {
     margin: 0;
 }
 
-/* Players Grid */
-/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -621,7 +643,6 @@ nav {
     font-weight: bold;
 }
 
-/* Live Stream */
 .stream-container {
     width: 100%;
     aspect-ratio: 16 / 9;
@@ -635,7 +656,6 @@ nav {
     height: 100%;
 }
 
-/* Team Scores */
 .team-scores-section {
     margin-top: 80px;
 }
@@ -651,7 +671,7 @@ nav {
     background: rgba(0, 0, 0, 0.4);
     border-radius: 8px;
     padding: 20px;
-    padding-top: 35px; /* Add space for the crown */
+    padding-top: 35px;
     text-align: center;
     border: 2px solid transparent;
     transition: transform 0.3s ease;
@@ -719,7 +739,6 @@ nav {
     margin: 5px 0;
 }
 
-/* Team Colors */
 .team-red { border-color: #ff4d4d; color: #ff4d4d; }
 .team-orange { border-color: #ffa500; color: #ffa500; }
 .team-yellow { border-color: #ffff00; color: #ffff00; }
@@ -731,12 +750,10 @@ nav {
 .team-purple { border-color: #bf00ff; color: #bf00ff; }
 .team-pink { border-color: #ff69b4; color: #ff69b4; }
 
-/* Adjust individual scores text color to keep them readable but distinct */
 .team-card-score .player-list p {
     color: rgba(255, 255, 255, 0.8);
 }
 
-/* Previous Events Section */
 .previous-events-section {
     margin-top: 80px;
     padding-bottom: 40px;
@@ -772,7 +789,6 @@ nav {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Modal for events */
 .event-modal-content {
     max-width: 800px;
     background: #222;
@@ -1128,7 +1144,6 @@ nav {
     }
 }
 
-/* Footer */
 footer {
     padding: 40px 0;
     text-align: center;
@@ -1137,7 +1152,6 @@ footer {
     color: #666;
 }
 
-/* Players Section Enhanced */
 .players-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -1218,7 +1232,6 @@ footer {
     background: #fff;
 }
 
-/* Player Modal Enhancements */
 .player-modal-content {
     max-width: 600px;
     border-color: var(--maroon-light);
@@ -1337,7 +1350,6 @@ footer {
     }
 }
 
-/* Lightbox */
 .lightbox {
     display: none;
     position: fixed;
@@ -1378,7 +1390,6 @@ footer {
     color: var(--gold);
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
     header {
         padding: 40px 0 30px;
@@ -1400,11 +1411,11 @@ footer {
         padding: 10px 5px;
         gap: 10px;
         -webkit-overflow-scrolling: touch;
-        scrollbar-width: none; /* Hide scrollbar for Firefox */
+        scrollbar-width: none;
     }
 
     nav::-webkit-scrollbar {
-        display: none; /* Hide scrollbar for Chrome/Safari */
+        display: none;
     }
 
     .nav-link {
@@ -1422,7 +1433,6 @@ footer {
         padding: 30px 0;
     }
 
-    /* Home section */
     .home-main-card {
         padding: 25px;
     }
@@ -1440,7 +1450,6 @@ footer {
         text-align: center;
     }
 
-    /* Modal Adjustments */
     .modal-content {
         padding: 20px;
         margin: 10% auto;
@@ -1455,12 +1464,10 @@ footer {
         grid-template-columns: 1fr;
     }
 
-    /* Live Stream */
     .stream-container {
         border-width: 2px;
     }
 
-    /* Teams Grid */
     .teams-grid {
         flex-direction: column;
         align-items: center;

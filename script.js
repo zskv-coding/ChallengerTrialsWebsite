@@ -2,10 +2,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabs = document.querySelectorAll('.nav-link');
     const contents = document.querySelectorAll('.tab-content');
     const transitionOverlay = document.getElementById('page-transition');
+    const animationToggle = document.getElementById('animation-toggle');
+    let animationsEnabled = localStorage.getItem('tabAnimations') !== 'false';
     let twitchEmbed = null;
     let liveStandingsInterval = null;
 
-    // Trigger initial load transition
+    function updateAnimationToggle() {
+        animationToggle.textContent = `Animations: ${animationsEnabled ? 'ON' : 'OFF'}`;
+        if (!animationsEnabled) {
+            document.body.classList.add('no-animations');
+        } else {
+            document.body.classList.remove('no-animations');
+        }
+    }
+
+    animationToggle.addEventListener('click', () => {
+        animationsEnabled = !animationsEnabled;
+        localStorage.setItem('tabAnimations', animationsEnabled);
+        updateAnimationToggle();
+    });
+
+    updateAnimationToggle();
     triggerTransition();
     
     initTitleTypewriter();
@@ -22,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Handle internal tab switches
     document.querySelectorAll('[data-tab-switch]').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -32,15 +48,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function triggerTransition(callback = null) {
+        if (!animationsEnabled) {
+            if (callback) callback();
+            return;
+        }
+
         transitionOverlay.classList.add('active');
         document.body.classList.add('loading');
 
-        // Halfway through transition, execute callback
         setTimeout(() => {
             if (callback) callback();
         }, 500);
 
-        // End transition
         setTimeout(() => {
             transitionOverlay.classList.remove('active');
             document.body.classList.remove('loading');
@@ -48,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function switchTab(target) {
-        // Update active states
         tabs.forEach(t => {
             if (t.getAttribute('data-tab') === target) {
                 t.classList.add('active');
@@ -65,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Initialize Twitch if Live tab is clicked and not already initialized
         if (liveStandingsInterval) {
             clearInterval(liveStandingsInterval);
             liveStandingsInterval = null;
@@ -75,8 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!twitchEmbed) {
                 initTwitch();
             }
-            updateLiveStandings(); // Fetch and update scores
-            // Auto-refresh every 30 seconds
+            updateLiveStandings();
             liveStandingsInterval = setInterval(updateLiveStandings, 30000);
         }
 
@@ -149,19 +165,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     modalTitle.textContent = card.querySelector('h2').textContent;
                     modalDesc.innerHTML = descriptions[gameKey];
                     
-                    // Update icon
                     const iconSrc = card.querySelector('.game-card-icon').src;
                     modalIcon.src = iconSrc;
                     modalIcon.alt = `${modalTitle.textContent} Icon`;
                     
-                    // Update gallery images
                     galleryImages.forEach((img, index) => {
                         img.src = `${gameKey}-${index + 1}.png`;
                         img.alt = `${modalTitle.textContent} Screenshot ${index + 1}`;
                     });
 
                     modal.style.display = 'block';
-                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                    document.body.style.overflow = 'hidden';
                 }
             });
         });
@@ -186,7 +200,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Lightbox logic
         galleryImages.forEach(img => {
             img.addEventListener('click', () => {
                 lightboxImg.src = img.src;
@@ -227,7 +240,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function initTwitch() {
         const host = window.location.hostname;
         
-        // Twitch embeds do not work on file:// protocol
         if (!host) {
             console.error("Twitch Embed Error: You must use a local web server (like Live Server) or host the site online. Twitch embeds do not work when opening HTML files directly.");
             document.getElementById('twitch-embed').innerHTML = '<div style="color: white; padding: 20px; text-align: center;">Twitch embed requires a web server to function. Please run this through a local server or host it online.</div>';
@@ -253,7 +265,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const modal = document.getElementById('player-modal');
         const closeBtn = document.querySelector('.player-close-modal');
 
-        // Populate grid
         playerData.forEach(player => {
             const card = document.createElement('div');
             card.className = 'player-card';
@@ -301,7 +312,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     const scoreItem = document.createElement('div');
                     scoreItem.className = 'score-item';
                     
-                    // Handle both object format and legacy number format
                     const eventName = scoreEntry.event || `Event ${index + 1}`;
                     const scoreValue = scoreEntry.score !== undefined ? scoreEntry.score : scoreEntry;
                     
@@ -345,49 +355,49 @@ document.addEventListener('DOMContentLoaded', () => {
                     { name: "Finale", icon: "ct-crown.png" }
                 ],
                 teams: [
-                    { name: "Blue Beacons", color: "blue", icon: "blue-beacons.png", score: 20511, players: [
+                    { name: "Blue Beacons", color: "blue", icon: "blue-beacons.png", score: 20503, players: [
                         { name: "DerGehasste", score: 1959 },
                         { name: "Wo0o0o0ble_", score: 1761 },
                         { name: "PizzaBuff", score: 1495 },
                         { name: "zombreyy", score: 806 }
                     ]},
-                    { name: "Pink Pilots", color: "pink", icon: "pink-pilots.png", score: 19296, players: [
+                    { name: "Pink Pilots", color: "pink", icon: "pink-pilots.png", score: 19282, players: [
                         { name: "ThatzRed", score: 2093 },
                         { name: "SpoonyTable", score: 2049 },
                         { name: "ProfPie2000", score: 1949 },
                         { name: "FishStride", score: 1742 }
                     ]},
-                    { name: "Yellow Yetis", color: "yellow", icon: "yellow-yetis.png", score: 16857, players: [
+                    { name: "Yellow Yetis", color: "yellow", icon: "yellow-yetis.png", score: 16850, players: [
                         { name: "McHunt132", score: 2305 },
                         { name: "CdogThePro", score: 1847 },
                         { name: "Bluekwyrm", score: 1650 },
                         { name: "LovefromNyxMC", score: 734 }
                     ]},
-                    { name: "Cyan Cyclones", color: "cyan", icon: "cyan-cyclones.png", score: 16792, players: [
+                    { name: "Cyan Cyclones", color: "cyan", icon: "cyan-cyclones.png", score: 16781, players: [
                         { name: "HoodieDuck_", score: 2005 },
                         { name: "Stehllar_", score: 1955 },
                         { name: "PorcChrysus", score: 1773 },
                         { name: "6ProUp4", score: 1126 }
                     ]},
-                    { name: "Purple Pirates", color: "purple", icon: "purple-pirates.png", score: 16214, players: [
+                    { name: "Purple Pirates", color: "purple", icon: "purple-pirates.png", score: 16205, players: [
                         { name: "Jokana_san", score: 1854 },
                         { name: "FaZe_Bayern", score: 1788 },
                         { name: "XclamationPoint", score: 1572 },
                         { name: "pennycantread", score: 1468 }
                     ]},
-                    { name: "Lime Lizards", color: "lime", icon: "lime-lizards.png", score: 16212, players: [
+                    { name: "Lime Lizards", color: "lime", icon: "lime-lizards.png", score: 16202, players: [
                         { name: "Apples05", score: 2040 },
                         { name: "Xpar17", score: 1594 },
                         { name: "StarSnowLeopard", score: 1521 },
                         { name: "WolfieLiam", score: 1211 }
                     ]},
-                    { name: "Red Robots", color: "red", icon: "red-robots.png", score: 13500, players: [
+                    { name: "Red Robots", color: "red", icon: "red-robots.png", score: 13495, players: [
                         { name: "Skate8", score: 2123 },
                         { name: "KubaBabilon", score: 1598 },
                         { name: "CHALLY073763", score: 917 },
                         { name: "_Butter_Boi_", score: 759 }
                     ]},
-                    { name: "Orange Owls", color: "orange", icon: "orange-owls.png", score: 12912, players: [
+                    { name: "Orange Owls", color: "orange", icon: "orange-owls.png", score: 12907, players: [
                         { name: "mintnhi", score: 2152 },
                         { name: "RedTheCactus", score: 1449 },
                         { name: "MrCakeness", score: 1406 },
@@ -568,7 +578,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Generate Previous Events
         for (let i = 3; i >= 1; i--) {
             let eventData;
             
@@ -645,7 +654,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     `).join('');
 
-                    // Full team details for wide view
                     let fullStandingsHtml = eventData.teams.map(team => {
                         const playerHtml = team.players.map(p => {
                             const pData = playerData.find(pd => pd.name.toLowerCase() === p.name.toLowerCase());
@@ -681,52 +689,37 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="game-icon-wrapper" data-game-name="${game.name}"><img src="${game.icon}" alt="${game.name}"></div>
                             ${idx < eventData.games.length - 1 ? '<div class="game-icon-wrapper arrow">→</div>' : ''}
                         `).join('');
-                    } else {
-                        // Fallback
-                        gamesHtml = `
-                            <div class="game-icon-wrapper" data-game-name="Clockwork"><img src="clockwork-icon.png" alt="Clockwork"></div>
-                            <div class="game-icon-wrapper arrow">→</div>
-                            <div class="game-icon-wrapper" data-game-name="Farm Rush"><img src="farmrush-icon.png" alt="Farm Rush"></div>
-                            <div class="game-icon-wrapper arrow">→</div>
-                            <div class="game-icon-wrapper" data-game-name="Footrace"><img src="footrace-icon.png" alt="Footrace"></div>
-                            <div class="game-icon-wrapper arrow">→</div>
-                            <div class="game-icon-wrapper" data-game-name="Parkour Pathway"><img src="parkour-icon.png" alt="Parkour Pathway"></div>
-                            <div class="game-icon-wrapper arrow">→</div>
-                            <div class="game-icon-wrapper" data-game-name="Spleef"><img src="spleef-icon.png" alt="Spleef"></div>
-                            <div class="game-icon-wrapper arrow">→</div>
-                            <div class="game-icon-wrapper" data-game-name="Survival Games"><img src="survivalgames-icon.png" alt="Survival Games"></div>
-                            <div class="game-icon-wrapper arrow">→</div>
-                            <div class="game-icon-wrapper" data-game-name="Capture the Flag"><img src="ctf-icon.png" alt="Capture the Flag"></div>
-                            <div class="game-icon-wrapper arrow">→</div>
-                            <div class="game-icon-wrapper finale" data-game-name="Finale"><img src="ct-crown.png" alt="Finale"></div>
-                        `;
                     }
 
                     detailInfo.innerHTML = `
-                        <div class="event-detail-section">
-                            <h3><span class="icon">🎮</span> Games Played</h3>
-                            <div class="games-played-icons">
+                        <div class="event-timeline">
+                            <div class="games-sequence">
                                 ${gamesHtml}
                             </div>
                         </div>
                         <div class="event-detail-grid">
                             <div class="event-detail-section">
-                                <h3><span class="icon">🏆</span> Final Standings</h3>
-                                ${teamStandingsHtml}
+                                <h3><span class="icon">🏆</span> Team Standings</h3>
+                                <div class="mini-standings-list">
+                                    ${teamStandingsHtml}
+                                </div>
                             </div>
                             <div class="event-detail-section">
-                                <h3><span class="icon">👤</span> Top Players</h3>
-                                ${topPlayersHtml}
+                                <h3><span class="icon">👤</span> Individual Top 3</h3>
+                                <div class="mini-indiv-list">
+                                    ${topPlayersHtml}
+                                </div>
                             </div>
                         </div>
-                        <div class="event-detail-section full-stats-divider">
-                            <h2 class="section-subtitle">Individual Team Scores</h2>
-                        </div>
-                        <div class="full-event-stats">
-                            ${fullStandingsHtml}
+                        <div class="event-full-standings">
+                            <h3><span class="icon">📊</span> Detailed Standings</h3>
+                            <div class="full-standings-grid">
+                                ${fullStandingsHtml}
+                            </div>
                         </div>
                     `;
                 }
+
                 modal.style.display = 'block';
                 document.body.style.overflow = 'hidden';
             });
@@ -734,23 +727,13 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.appendChild(card);
         }
 
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            });
-        }
-
-        window.addEventListener('click', (event) => {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
         });
     }
 
     async function updateLiveStandings() {
-        // REPLACE THIS with your actual Koyeb URL
         const API_URL = 'https://determined-kore-challengertrials-f861d4c5.koyeb.app/teams';
         const grid = document.querySelector('.teams-grid');
         if (!grid) return;
@@ -761,20 +744,15 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const data = await response.json();
             
-            // Sort data by total score descending
             data.sort((a, b) => b.total_score - a.total_score);
             
             data.forEach((team, index) => {
-                // Finds the card (e.g., .team-red, .team-orange)
                 const teamCard = document.querySelector(`.team-card-score.team-${team.team_id}`);
                 
                 if (teamCard) {
-                    // Remove existing crown if any
                     const oldCrown = teamCard.querySelector('.team-crown');
                     if (oldCrown) oldCrown.remove();
 
-                    // Add crown to the winner
-                    // We check for a winner flag from the API, or if it's the Beta 1 demo, Blue Beacons
                     if (team.winner || team.is_winner || (team.team_id === 'blue' && team.total_score === 9171)) {
                         const crown = document.createElement('img');
                         crown.src = 'ct-crown.png';
@@ -783,10 +761,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         teamCard.prepend(crown);
                     }
 
-                    // Update main score
                     teamCard.querySelector('.score-main').textContent = team.total_score.toLocaleString();
                     
-                    // Update player list
                     const playerList = teamCard.querySelector('.player-list');
                     if (playerList && team.players) {
                         playerList.innerHTML = team.players.map(p => {
@@ -802,14 +778,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         }).join('');
                     }
 
-                    // Re-append to grid to reorder based on sorted data
                     grid.appendChild(teamCard);
                 }
             });
         } catch (error) {
             console.warn('Live standings API error or not available. Sorting existing cards by static scores.');
             
-            // Fallback: Sort existing cards in the DOM by their current displayed scores
             const cards = Array.from(grid.querySelectorAll('.team-card-score'));
             cards.sort((a, b) => {
                 const scoreA = parseInt(a.querySelector('.score-main').textContent.replace(/,/g, '')) || 0;
@@ -817,13 +791,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return scoreB - scoreA;
             });
 
-            // Re-append in sorted order and ensure faces are shown
             cards.forEach((card, index) => {
-                // Remove existing crown if any
                 const oldCrown = card.querySelector('.team-crown');
                 if (oldCrown) oldCrown.remove();
 
-                // Add crown to the actual winner (Pink Pilots for Beta #3)
                 const teamName = card.querySelector('h3').textContent;
                 if (teamName === "Pink Pilots") {
                     const crown = document.createElement('img');
@@ -833,7 +804,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     card.prepend(crown);
                 }
 
-                // Update static player list to include faces if not already there
                 const playerList = card.querySelector('.player-list');
                 if (playerList) {
                     const players = Array.from(playerList.querySelectorAll('p, .live-player-row'));
