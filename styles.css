@@ -827,7 +827,11 @@ body.no-animations .tab-content {
     gap: 10px;
 }
 
-.games-played-icons {
+.event-timeline {
+    margin-bottom: 30px;
+}
+
+.games-sequence {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -837,6 +841,13 @@ body.no-animations .tab-content {
     padding: 20px;
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mini-standings-list, .mini-indiv-list {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .game-icon-wrapper {

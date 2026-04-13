@@ -692,7 +692,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     detailInfo.innerHTML = `
-                        <div class="event-timeline">
+                        <div class="event-detail-section">
+                            <h3><span class="icon">🎮</span> Games Played</h3>
                             <div class="games-sequence">
                                 ${gamesHtml}
                             </div>
