@@ -264,22 +264,42 @@ document.addEventListener('DOMContentLoaded', () => {
         const grid = document.getElementById('players-grid');
         const modal = document.getElementById('player-modal');
         const closeBtn = document.querySelector('.player-close-modal');
+        const searchInput = document.getElementById('player-search');
 
-        playerData.forEach(player => {
-            const card = document.createElement('div');
-            card.className = 'player-card';
-            card.innerHTML = `
-                <div class="player-card-inner">
-                    <img src="https://crafatar.com/avatars/${player.uuid}?size=128&overlay" alt="${player.name}" class="player-card-skin" onerror="this.src='https://minotar.net/helm/${player.uuid}/128'">
-                    <div class="player-card-info">
-                        <span class="player-card-name">${player.name}</span>
-                        <button class="stats-btn">Stats</button>
+        function displayPlayers(filteredPlayers) {
+            grid.innerHTML = '';
+            filteredPlayers.forEach(player => {
+                const card = document.createElement('div');
+                card.className = 'player-card';
+                card.innerHTML = `
+                    <div class="player-card-inner">
+                        <img src="https://crafatar.com/avatars/${player.uuid}?size=128&overlay" alt="${player.name}" class="player-card-skin" onerror="this.src='https://minotar.net/helm/${player.uuid}/128'">
+                        <div class="player-card-info">
+                            <span class="player-card-name">${player.name}</span>
+                            <button class="stats-btn">Stats</button>
+                        </div>
                     </div>
-                </div>
-            `;
+                `;
 
-            card.addEventListener('click', () => showPlayerStats(player));
-            grid.appendChild(card);
+                card.addEventListener('click', () => showPlayerStats(player));
+                grid.appendChild(card);
+            });
+
+            if (filteredPlayers.length === 0) {
+                grid.innerHTML = '<p class="no-data" style="grid-column: 1/-1; font-size: 1.2rem; margin-top: 20px;">No players found matching your search.</p>';
+            }
+        }
+
+        // Initial display
+        displayPlayers(playerData);
+
+        // Search logic
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredPlayers = playerData.filter(player => 
+                player.name.toLowerCase().includes(searchTerm)
+            );
+            displayPlayers(filteredPlayers);
         });
 
         closeBtn.addEventListener('click', () => {
