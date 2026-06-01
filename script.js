@@ -595,10 +595,92 @@ document.addEventListener('DOMContentLoaded', () => {
                     { name: "HoodieDuck_", score: 2933 },
                     { name: "Sacronix", score: 2916 }
                 ]
+            },
+            4: {
+                tag: "CT 4B",
+                title: "Challenger Trials CT 4B",
+                description: "Purple Pirates dominate in CT 4B!",
+                winner: { name: "Purple Pirates", icon: "purple-pirates.png" },
+                games: [
+                    { name: "Clockwork", icon: "clockwork-icon.png" },
+                    { name: "Farm Rush", icon: "farmrush-icon.png" },
+                    { name: "Spleef", icon: "spleef-icon.png" },
+                    { name: "Footrace", icon: "footrace-icon.png" },
+                    { name: "Parkour Pathway", icon: "parkour-icon.png" },
+                    { name: "Survival Games", icon: "survivalgames-icon.png" },
+                    { name: "Capture the Flag", icon: "ctf-icon.png" }
+                ],
+                teams: [
+                    { name: "Purple Pirates", color: "purple", icon: "purple-pirates.png", score: 23122, players: [
+                        { name: "ProfPie2000", score: 3407 },
+                        { name: "Konzid", score: 2914 },
+                        { name: "egguv", score: 2427 },
+                        { name: "SlothRSR", score: 1675 }
+                    ]},
+                    { name: "Blue Beacons", color: "blue", icon: "blue-beacons.png", score: 21711, players: [
+                        { name: "SouperLucky_", score: 2708 },
+                        { name: "SpoonyTable", score: 2650 },
+                        { name: "Wo0o0o0ble_", score: 2340 },
+                        { name: "zombreyy", score: 1441 }
+                    ]},
+                    { name: "Pink Pilots", color: "pink", icon: "pink-pilots.png", score: 21053, players: [
+                        { name: "ThatzRed", score: 2930 },
+                        { name: "DerGehasste", score: 2885 },
+                        { name: "FishStride", score: 2557 },
+                        { name: "CHALLY073763", score: 1756 }
+                    ]},
+                    { name: "Cyan Cyclones", color: "cyan", icon: "cyan-cyclones.png", score: 19327, players: [
+                        { name: "BoboRozo", score: 2583 },
+                        { name: "avologi", score: 2311 },
+                        { name: "De3J", score: 2204 },
+                        { name: "McZeal", score: 1676 }
+                    ]},
+                    { name: "Aqua Aliens", color: "aqua", icon: "aqua-aliens.png", score: 19019, players: [
+                        { name: "HoodieDuck_", score: 3258 },
+                        { name: "FaZe_Bayern", score: 2324 },
+                        { name: "S0ssy", score: 1969 },
+                        { name: "DylanWMC", score: 1937 }
+                    ]},
+                    { name: "Orange Owls", color: "orange", icon: "orange-owls.png", score: 18518, players: [
+                        { name: "Snoae", score: 2988 },
+                        { name: "MrCakeness", score: 2445 },
+                        { name: "Krumbld", score: 1823 },
+                        { name: "GeneralAlexMC", score: 1375 }
+                    ]},
+                    { name: "Red Robots", color: "red", icon: "red-robots.png", score: 16095, players: [
+                        { name: "TSM_Fire", score: 2686 },
+                        { name: "SimplyAlexiss", score: 2068 },
+                        { name: "Bluekwyrm", score: 1478 },
+                        { name: "GD_Balun123", score: 665 }
+                    ]},
+                    { name: "Yellow Yetis", color: "yellow", icon: "yellow-yetis.png", score: 14485, players: [
+                        { name: "itsnuku", score: 1847 },
+                        { name: "star_ish", score: 1740 },
+                        { name: "Swifyz", score: 1426 },
+                        { name: "MineyLO", score: 1107 }
+                    ]},
+                    { name: "Lime Lizards", color: "lime", icon: "lime-lizards.png", score: 14471, players: [
+                        { name: "Skate8", score: 2558 },
+                        { name: "NotHydra_", score: 1643 },
+                        { name: "only_chance", score: 1624 },
+                        { name: "Skwishywishy", score: 1080 }
+                    ]},
+                    { name: "Green Geese", color: "green", icon: "green-geese.png", score: 13662, players: [
+                        { name: "mintnhi", score: 2401 },
+                        { name: "pennycantread", score: 2079 },
+                        { name: "slushydealer", score: 2044 },
+                        { name: "BlueBen8", score: 937 }
+                    ]}
+                ],
+                topPlayers: [
+                    { name: "HoodieDuck_", score: 3258 },
+                    { name: "ProfPie2000", score: 3407 },
+                    { name: "Snoae", score: 2988 }
+                ]
             }
         };
 
-        for (let i = 3; i >= 1; i--) {
+        for (let i = 4; i >= 1; i--) {
             let eventData;
             
             if (eventDataMap[i]) {
